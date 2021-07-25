@@ -1,0 +1,136 @@
+[SELF-DISCIPLINE]2021/07/12 - 22:36:18.847	[31mfatal[0m	redis connect ping failed, err:	{"err": "dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+[SELF-DISCIPLINE]2021/07/12 - 22:36:50.544	[31mfatal[0m	redis connect ping failed, err:	{"err": "dial tcp 127.0.0.1:6379: connectex: No connection could be made because the target machine actively refused it."}
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.850	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.951	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.951	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.952	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.954	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:37:59.969	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:09.345	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 187.5506, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:09.349	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:13.994	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 3.055, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:14.000	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:21.898	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.0018, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:38:21.903	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.243	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.249	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.249	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.250	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.251	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:42:21.258	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:42:24.174	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 3.2674, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:42:24.176	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:46:35.425	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.2674, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:46:35.430	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.370	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.376	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.376	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.377	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.378	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:48:25.385	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:48:28.365	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.416, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.735	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.740	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.741	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.741	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.742	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:53:46.753	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:53:49.767	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.9966, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:53:49.771	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.859	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.867	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.868	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.868	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.869	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:54:22.881	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:25.757	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 1.5895, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:25.759	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.791	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.797	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.798	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.798	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.799	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:54:56.811	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:59.518	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 7.1621, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:54:59.525	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.357	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.364	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.364	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.365	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.366	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:56:26.376	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:29.961	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:13", "duration": 3.6908, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:29.964	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:50.048	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:13", "duration": 2.4243, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:56:50.053	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:57:07.885	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:13", "duration": 1.9713, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:57:07.889	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.959	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.966	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.966	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.967	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.968	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 22:59:18.977	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 22:59:21.574	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.3971, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 22:59:21.576	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.319	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.324	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.325	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.326	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.326	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:02:35.327	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:02:39.235	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 1.7885, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:03:13.053	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.0738, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:03:36.228	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 3.0673, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.167	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.173	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.173	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.174	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.175	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:10:40.186	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:10:45.121	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 1.7954, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:10:45.124	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.290	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.296	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.296	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.297	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.298	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:11:54.311	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:12:11.347	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.1103, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:12:11.349	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.956	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.961	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.961	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.962	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.963	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:13:31.968	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:13:36.393	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.3912, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.357	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.363	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.363	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.364	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.365	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:14:37.370	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:14:40.154	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.3829, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.392	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.397	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.398	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.400	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.400	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:15:12.412	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:15:15.181	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.3035, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:15:15.184	[31merror[0m	设置登录状态失败!	{"err": "redis: can't marshal reflect.Value (implement encoding.BinaryMarshaler)"}
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.926	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.932	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.933	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.933	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.934	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:16:33.939	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:16:38.013	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.6901, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.236	[34minfo[0m	redis connect ping response:	{"pong": "PONG"}
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.242	[34minfo[0m	use middleware logger
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.242	[34minfo[0m	use middleware cors
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.243	[34minfo[0m	register swagger handler
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.243	[34minfo[0m	router register success
+[SELF-DISCIPLINE]2021/07/12 - 23:23:08.244	[34minfo[0m	server run success on 	{"address": ":8800"}
+[SELF-DISCIPLINE]2021/07/12 - 23:23:11.558	[34minfo[0m	gorm	{"src": "D:/goProject/src/self-discipline/service/user/service_login.go:12", "duration": 2.1418, "rows": 1, "sql": "SELECT * FROM `users` WHERE (phone = '18124106041' AND password = 'e10adc3949ba59abbe56e057f20f883e') AND `users`.`deleted_at` IS NULL ORDER BY `users`.`id` LIMIT 1"}
