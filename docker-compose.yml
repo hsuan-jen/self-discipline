@@ -1,0 +1,60 @@
+# 官方文档：https://docs.docker.com/compose/compose-file/
+version: "3"
+
+services: 
+    server:
+        container_name: server_container
+        build: .
+        restart: on-failure
+        ports: 
+            - '9999:9999'
+        depends_on:
+            - mysql
+            - redis
+        links:
+            - mysql
+            - redis
+        networks:
+            - network
+
+    mysql:
+        container_name: mysql_container
+        image: mysql:8.0.26
+        restart: always
+        ports: 
+            - '13306:3306'
+        command: [
+            '--character-set-server=utf8mb4',
+            '--collation-server=utf8mb4_unicode_ci',
+            '--default-authentication-plugin=mysql_native_password'
+        ]
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+            MYSQL_DATABASE: go-docker
+            TZ: Asia/Shanghai
+            #MYSQL_USER: user # 创建新用户
+            #MYSQL_PASSWORD: user_password # 新用户的密码
+        volumes:
+            - mysql_data:/var/lib/mysql
+            #- /usr/mysql/data:/var/lib/mysql
+            - /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - network
+    redis:
+        container_name: redis_container
+        image: redis:alpine3.14
+        restart: always
+        ports:
+            - "6379:6379"
+        volumes:
+            - redis_data:/var/lib/redis
+        networks:
+            - network
+
+networks:
+    network:
+        driver: "bridge"
+
+volumes:
+    mysql_data:
+    redis_data:

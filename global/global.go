@@ -16,5 +16,4 @@ var (
 	CONFIG config.Server
 	VP     *viper.Viper
 	LOG    *zap.Logger
-	//GLOBAL_Timer timer.Timer = timer.NewTimerTask()
 )

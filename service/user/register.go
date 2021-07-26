@@ -1,4 +1,4 @@
-package user_service
+package user
 
 import (
 	"errors"
@@ -10,9 +10,10 @@ import (
 	"gorm.io/gorm"
 )
 
-func (s *service) Register(u *model.Users) (err error, userInter *model.Users) {
+func Register(u *model.Users) (err error, userInter *model.Users) {
 
 	var user model.Users
+
 	if !errors.Is(global.DB.Select("phone").Where("phone = ?", u.Phone).First(&user).Error, gorm.ErrRecordNotFound) {
 		// 判断用户名是否注册
 		return errors.New("用户名已注册"), userInter

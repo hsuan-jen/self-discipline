@@ -1,4 +1,4 @@
-package user_handler
+package user
 
 import (
 	"self-discipline/configs"
@@ -23,20 +23,19 @@ import (
 // @Param data body request.Login true "手机号码, 密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
 // @Router /v1/login [post]
-func (h *handler) Login(c *gin.Context) {
+func Login(c *gin.Context) {
 	var req request.Login
 	_ = c.ShouldBind(&req)
 
 	if err := utils.Verify(req, utils.LoginVerify); err != nil {
-		response.FailWithMessage(err.Error(), c)
+		response.FailWithVerify(err.Error(), c)
 		return
 	}
 
 	u := model.Users{Phone: req.Phone, Password: req.Password}
-	userService := userService.New()
 	if err, user := userService.Login(&u); err != nil {
 		global.LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Any("err", err))
-		response.FailWithMessage("用户名不存在或者密码错误", c)
+		response.FailWithCode(response.UserEmpty, c)
 	} else {
 		tokenNext(c, *user)
 	}
@@ -59,22 +58,21 @@ func tokenNext(c *gin.Context, user model.Users) {
 	token, err := j.CreateToken(claims)
 	if err != nil {
 		global.LOG.Error("获取token失败!", zap.Any("err", err))
-		response.FailWithMessage("获取token失败", c)
+		response.FailWithCode(response.JwtCreateError, c)
 		return
 	}
 
 	rkey := configs.RedisKeyJWT + strconv.FormatUint(user.ID, 10)
-	userService := userService.New()
 
 	if err := userService.SetRedisJWT(token, rkey); err != nil {
 		global.LOG.Error("设置登录状态失败!", zap.Any("err", err))
-		response.FailWithMessage("设置登录状态失败", c)
+		response.FailWithCode(response.UserSetStatusErr, c)
 		return
 	}
 
 	if err = userService.SaveUserRedis(&user); err != nil {
 		global.LOG.Error("记录登录信息失败!", zap.Any("err", err))
-		response.FailWithMessage("记录登录信息失败", c)
+		response.FailWithCode(response.UserRecordErr, c)
 		return
 	}
 

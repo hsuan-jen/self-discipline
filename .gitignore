@@ -1,0 +1,10 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+
+# Editor directories and files
+.idea
+.vscode
+.DS_Store
+
+*.log

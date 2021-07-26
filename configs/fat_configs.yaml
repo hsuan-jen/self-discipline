@@ -1,88 +1,24 @@
-aliyun-oss:
-  endpoint: yourEndpoint
-  access-key-id: yourAccessKeyId
-  access-key-secret: yourAccessKeySecret
-  bucket-name: yourBucketName
-  bucket-url: yourBucketUrl
-autocode:
-  transfer-restart: true
-  root: ""
-  server: /server
-  server-api: /api/v1
-  server-initialize: /initialize
-  server-model: /model
-  server-request: /model/request/
-  server-router: /router
-  server-service: /service
-  web: /web/src
-  web-api: /api
-  web-form: /view
-  web-table: /view
-  web-flow: /view
-captcha:
-  key-long: 6
-  img-width: 240
-  img-height: 80
-casbin:
-  model-path: ./resource/rbac_model.conf
-email:
-  to: xxx@qq.com
-  port: 465
-  from: xxx@163.com
-  host: smtp.163.com
-  is-ssl: true
-  secret: xxx
-  nickname: test
-excel:
-  dir: ./resource/excel/
 jwt:
   signing-key: Commander
   expires-time: 604800
   buffer-time: 86400
-local:
-  path: uploads/file
 mysql:
   path: 127.0.0.1:3306
   config: charset=utf8mb4&parseTime=True&loc=Local
   db-name: self-discipline
   username: root
   password: root
-  max-idle-conns: 0
-  max-open-conns: 0
+  max-idle-conns: 10
+  max-open-conns: 100
   log-mode: true
   log-zap: "Info"
-qiniu:
-  zone: ZoneHuaDong
-  bucket: ""
-  img-path: ""
-  use-https: false
-  access-key: ""
-  secret-key: ""
-  use-cdn-domains: false
 redis:
   db: 0
   addr: 127.0.0.1:6379
-  password: "123456"
+  password: "3M77rbraihrKCctF"
 system:
-  env: public
   addr: 8800
   db-type: mysql
-  oss-type: local
-  use-multipoint: false
-tencent-cos:
-  bucket: xxxxx-10005608
-  region: ap-shanghai
-  secret-id: xxxxxxxx
-  secret-key: xxxxxxxx
-  base-url: https://gin.vue.admin
-  path-prefix: gin-vue-admin
-timer:
-  start: true
-  spec: '@daily'
-  detail:
-  - tableName: sys_operation_records
-    compareField: created_at
-    interval: 2160h
 zap:
   level: info
   format: console

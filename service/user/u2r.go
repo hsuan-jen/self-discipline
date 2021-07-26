@@ -1,4 +1,4 @@
-package user_service
+package user
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func (s *service) SaveUserRedis(u *model.Users) error {
+func SaveUserRedis(u *model.Users) error {
 	m, err := utils.Struct2Map(u)
 	if err != nil {
 		return err

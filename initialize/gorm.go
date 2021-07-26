@@ -21,19 +21,8 @@ type gormMysql struct {
 	Db *gorm.DB
 }
 
-func Gorm() DbRepo {
-	switch global.CONFIG.System.DbType {
-	case "mysql":
-		db := &gormMysql{}
-		return db.New()
-	default:
-		db := &gormMysql{}
-		return db.New()
-	}
-}
-
 // 初始化Mysql数据库
-func (g *gormMysql) New() DbRepo {
+func Gorm() DbRepo {
 	m := global.CONFIG.Mysql
 	if m.Dbname == "" {
 		return nil

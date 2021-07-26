@@ -1,10 +1,58 @@
 basePath: /
+definitions:
+  request.Login:
+    properties:
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机号码
+        type: string
+    type: object
 info:
   contact: {}
   description: This is a sample Server pets
   title: Swagger Example API
   version: 0.0.1
-paths: {}
+paths:
+  /v1/Register:
+    post:
+      parameters:
+      - description: 手机号码, 密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          schema:
+            type: string
+      summary: 用户注册
+      tags:
+      - Base
+  /v1/login:
+    post:
+      parameters:
+      - description: 手机号码, 密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"登陆成功"}'
+          schema:
+            type: string
+      summary: 用户登录
+      tags:
+      - Base
 securityDefinitions:
   ApiKeyAuth:
     in: header
