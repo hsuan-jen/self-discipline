@@ -18,7 +18,7 @@ redis:
   password: "3M77rbraihrKCctF"
 system:
   addr: 8800
-  pprof: false
+  pprof: true
 zap:
   level: info
   format: console

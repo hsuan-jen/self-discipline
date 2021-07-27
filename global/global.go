@@ -1,7 +1,7 @@
 package global
 
 import (
-	"self-discipline/pkg"
+	"self-discipline/configs"
 
 	"go.uber.org/zap"
 
@@ -13,7 +13,7 @@ import (
 var (
 	DB     *gorm.DB
 	REDIS  *redis.Client
-	CONFIG pkg.Server
+	CONFIG configs.Server
 	VP     *viper.Viper
 	LOG    *zap.Logger
 )
