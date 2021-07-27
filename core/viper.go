@@ -12,9 +12,9 @@ import (
 func Viper() *viper.Viper {
 
 	v := viper.New()
-	v.SetConfigName(env.Active().Value() + "_configs")
+	v.SetConfigName("configs." + env.Active().Value())
 	v.SetConfigType("yaml")
-	v.AddConfigPath("./configs")
+	v.AddConfigPath("./conf")
 
 	if err := v.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("Fatal error config file: %s \n", err))
