@@ -26,6 +26,9 @@ var doc = `{
     "paths": {
         "/v1/Register": {
             "post": {
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -35,13 +38,16 @@ var doc = `{
                 "summary": "用户注册",
                 "parameters": [
                     {
-                        "description": "手机号码, 密码",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.Login"
-                        }
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "手机号码",
+                        "name": "phone",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -56,6 +62,9 @@ var doc = `{
         },
         "/v1/login": {
             "post": {
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
                 "produces": [
                     "application/json"
                 ],
@@ -65,13 +74,16 @@ var doc = `{
                 "summary": "用户登录",
                 "parameters": [
                     {
-                        "description": "手机号码, 密码",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.Login"
-                        }
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "手机号码",
+                        "name": "phone",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -81,21 +93,6 @@ var doc = `{
                             "type": "string"
                         }
                     }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "request.Login": {
-            "type": "object",
-            "properties": {
-                "password": {
-                    "description": "密码",
-                    "type": "string"
-                },
-                "phone": {
-                    "description": "手机号码",
-                    "type": "string"
                 }
             }
         }

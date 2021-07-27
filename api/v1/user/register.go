@@ -14,8 +14,9 @@ import (
 
 // @Tags Base
 // @Summary 用户注册
-// @Produce  application/x-www-form-urlencoded
-// @Param data body request.Login true "手机号码, 密码"
+// @Accept application/x-www-form-urlencoded
+// @Produce  application/json
+// @Param data formData request.Login true "手机号码, 密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"注册成功"}"
 // @Router /v1/Register [post]
 func Register(c *gin.Context) {

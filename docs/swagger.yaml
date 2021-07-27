@@ -1,14 +1,4 @@
 basePath: /
-definitions:
-  request.Login:
-    properties:
-      password:
-        description: 密码
-        type: string
-      phone:
-        description: 手机号码
-        type: string
-    type: object
 info:
   contact: {}
   description: This is a sample Server pets
@@ -17,13 +7,17 @@ info:
 paths:
   /v1/Register:
     post:
+      consumes:
+      - application/x-www-form-urlencoded
       parameters:
-      - description: 手机号码, 密码
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/request.Login'
+      - description: 密码
+        in: formData
+        name: password
+        type: string
+      - description: 手机号码
+        in: formData
+        name: phone
+        type: string
       produces:
       - application/json
       responses:
@@ -36,13 +30,17 @@ paths:
       - Base
   /v1/login:
     post:
+      consumes:
+      - application/x-www-form-urlencoded
       parameters:
-      - description: 手机号码, 密码
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/request.Login'
+      - description: 密码
+        in: formData
+        name: password
+        type: string
+      - description: 手机号码
+        in: formData
+        name: phone
+        type: string
       produces:
       - application/json
       responses:
