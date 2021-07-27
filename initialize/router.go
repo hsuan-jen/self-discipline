@@ -6,6 +6,7 @@ import (
 	"self-discipline/middleware"
 	"self-discipline/router"
 
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
@@ -15,6 +16,12 @@ import (
 
 func Routers() *gin.Engine {
 	var Router = gin.Default()
+
+	// register pprof to gin
+	if global.CONFIG.System.Pprof {
+		pprof.Register(Router)
+	}
+
 	//Router.StaticFS(global.CONFIG.Local.Path, http.Dir(global.ONFIG.Local.Path)) // 为用户头像和文件提供静态地址
 	// Router.Use(middleware.LoadTls())  // 打开就能玩https了
 	global.LOG.Info("use middleware logger")
@@ -28,7 +35,7 @@ func Routers() *gin.Engine {
 	{
 		router.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
 	}
-	
+
 	PrivateGroup := Router.Group("")
 	PrivateGroup.Use(middleware.JWTAuth())
 	{

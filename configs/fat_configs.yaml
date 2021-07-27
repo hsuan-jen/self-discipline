@@ -18,7 +18,7 @@ redis:
   password: "3M77rbraihrKCctF"
 system:
   addr: 8800
-  db-type: mysql
+  pprof: false
 zap:
   level: info
   format: console
