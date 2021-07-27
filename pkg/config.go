@@ -1,4 +1,4 @@
-package config
+package pkg
 
 type Server struct {
 	JWT    JWT    `mapstructure:"jwt" json:"jwt" yaml:"jwt"`

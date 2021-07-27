@@ -1,4 +1,4 @@
-package config
+package pkg
 
 type Zap struct {
 	Level         string `mapstructure:"level" json:"level" yaml:"level"`                           // 级别

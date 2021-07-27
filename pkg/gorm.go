@@ -1,4 +1,4 @@
-package config
+package pkg
 
 type Mysql struct {
 	Path         string `mapstructure:"path" json:"path" yaml:"path"`                             // 服务器地址:端口

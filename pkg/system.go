@@ -1,4 +1,4 @@
-package config
+package pkg
 
 type System struct {
 	Env           string `mapstructure:"env" json:"env" yaml:"env"`                                 // 环境值
