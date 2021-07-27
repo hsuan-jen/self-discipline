@@ -14,3 +14,7 @@ type Register struct {
 type Avatar struct {
 	Avatar string `json:"avatar" form:"avatar"`
 }
+
+type WechatLogin struct {
+	Code string `json:"code" form:"code"`
+}

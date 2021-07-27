@@ -42,6 +42,11 @@ func Login(c *gin.Context) {
 	}
 }
 
+func WechatLogin(c *gin.Context) {
+	var accessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code"
+	_ = accessTokenUrl
+}
+
 // 登录以后签发jwt
 func tokenNext(c *gin.Context, user model.Users) {
 	j := &middleware.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名

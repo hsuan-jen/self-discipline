@@ -10,4 +10,5 @@ type Server struct {
 	Redis  conf.Redis  `mapstructure:"redis" json:"redis" yaml:"redis"`
 	Mysql  conf.Mysql  `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
 	System conf.System `mapstructure:"system" json:"system" yaml:"system"`
+	Wechat conf.Wechat `mapstructure:"wechat" json:"wechat" yaml:"wechat"`
 }
