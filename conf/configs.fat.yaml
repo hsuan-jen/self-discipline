@@ -10,7 +10,7 @@ mysql:
   password: root
   max-idle-conns: 10
   max-open-conns: 100
-  log-mode: true
+  log-mode: false
   log-zap: "Info"
 redis:
   db: 0
@@ -18,8 +18,10 @@ redis:
   password: "3M77rbraihrKCctF"
 system:
   addr: 8800
-  pprof: true
-  promhttp: true
+  pprof: false
+  promhttp: false
+  rate: true
+  max-burstSize: 100000
 zap:
   level: info
   format: console
