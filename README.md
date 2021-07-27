@@ -3,7 +3,8 @@
 ```
 ├── api             (api层)
 │   └── v1          (v1版本接口)
-├── configs         (配置文件及常量)
+├── conf            (配置文)
+├── configs         (配置包)
 ├── core            (核心文件)
 ├── docs            (swagger文档目录)
 ├── global          (全局对象)
@@ -13,10 +14,8 @@
 ├── model           (模型层) 
 │   ├── request     (入参结构体)                
 │   └── response    (出参结构体)
-├── pkg             (配置包)
 ├── router          (路由层)               
-├── service         (service层)
-├── source          (source层)                
+├── service         (service层)              
 └── utils           (工具包)
 ```
 
