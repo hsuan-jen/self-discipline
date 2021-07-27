@@ -19,6 +19,7 @@ redis:
 system:
   addr: 8800
   pprof: true
+  promhttp: true
 zap:
   level: info
   format: console

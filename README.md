@@ -50,3 +50,8 @@ go tool pprof -http=:1234 http://localhost:8800/debug/pprof/goroutine
 # 采集协程数据并持续20S
 # 常用的命令有top,tree,web,list等
 ```
+## 开启prometheus,在配置文件中设置
+```
+system:
+  promhttp: true
+```

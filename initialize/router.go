@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
@@ -20,6 +21,13 @@ func Routers() *gin.Engine {
 	// register pprof to gin
 	if global.CONFIG.System.Pprof {
 		pprof.Register(Router)
+		global.LOG.Info("register pprof handler")
+	}
+
+	//register prometheus
+	if global.CONFIG.System.Promhttp {
+		Router.GET("/metrics", gin.WrapH(promhttp.Handler()))
+		global.LOG.Info("register promhttp handler")
 	}
 
 	//Router.StaticFS(global.CONFIG.Local.Path, http.Dir(global.ONFIG.Local.Path)) // 为用户头像和文件提供静态地址
@@ -30,6 +38,7 @@ func Routers() *gin.Engine {
 	global.LOG.Info("use middleware cors")
 	Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	global.LOG.Info("register swagger handler")
+
 	// 方便统一添加路由组前缀 多服务器上线使用
 	PublicGroup := Router.Group("")
 	{
