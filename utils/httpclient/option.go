@@ -23,3 +23,9 @@ func WithHeader(key, value string) Option {
 		opt.header[key] = []string{value}
 	}
 }
+
+func NewOpt() *option {
+	return &option{
+		header: make(map[string][]string),
+	}
+}
