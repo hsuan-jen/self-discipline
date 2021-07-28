@@ -21,14 +21,15 @@ const (
 
 	// 业务模块级错误码
 	// 用户模块
-	IllegalUserName = 20101
-	UserCreateError = 20102
-	UserUpdateError = 20103
-	UserSearchError = 20104
-	UserSetStatusErr   = 20105
-	UserRecordErr = 20106
-	UserEmpty = 20107
-
+	IllegalUserName      = 20101
+	UserCreateError      = 20102
+	UserUpdateError      = 20103
+	UserSearchError      = 20104
+	UserSetStatusErr     = 20105
+	UserRecordErr        = 20106
+	UserEmpty            = 20107
+	WechatAccessTokenErr = 20108
+	WechatUserInfoErr    = 20109
 
 	// 配置
 	ConfigEmailError        = 20401
@@ -44,9 +45,9 @@ const (
 	SearchRedisEmpty = 20503
 	SearchMySQLError = 20504
 
-	JwtError = 20601
-	JwtOverdue = 20602
-	JwtResoluErr = 20603
+	JwtError       = 20601
+	JwtOverdue     = 20602
+	JwtResoluErr   = 20603
 	JwtCreateError = 20604
 )
 
@@ -61,17 +62,19 @@ var codeText = map[int]string{
 	HashIdsDecodeError: "ID 参数有误",
 	SignatureError:     "Signature Error",
 
-	IllegalUserName: "非法用户名",
-	UserCreateError: "创建用户失败",
-	UserUpdateError: "更新用户失败",
-	UserSearchError: "查询用户失败",
-	UserSetStatusErr: "设置登录状态失败",
-	UserRecordErr: "记录登录信息失败",
-	UserEmpty: "用户名不存在或者密码错误",
+	IllegalUserName:      "非法用户名",
+	UserCreateError:      "创建用户失败",
+	UserUpdateError:      "更新用户失败",
+	UserSearchError:      "查询用户失败",
+	UserSetStatusErr:     "设置登录状态失败",
+	UserRecordErr:        "记录登录信息失败",
+	UserEmpty:            "用户名不存在或者密码错误",
+	WechatAccessTokenErr: "获取access_token失败",
+	WechatUserInfoErr:    "获取微信用户信息失败",
 
-	JwtError: "未登录或非法访问",
-	JwtOverdue: "授权已过期",
-	JwtResoluErr: "jwt解析错误",
+	JwtError:       "未登录或非法访问",
+	JwtOverdue:     "授权已过期",
+	JwtResoluErr:   "jwt解析错误",
 	JwtCreateError: "获取token失败",
 
 	ConfigEmailError:        "修改邮箱配置失败",

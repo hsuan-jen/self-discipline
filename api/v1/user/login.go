@@ -1,6 +1,8 @@
 package user
 
 import (
+	"encoding/json"
+	httpURL "net/url"
 	"self-discipline/configs"
 	"self-discipline/global"
 	"self-discipline/middleware"
@@ -9,6 +11,7 @@ import (
 	"self-discipline/model/response"
 	userService "self-discipline/service/user"
 	"self-discipline/utils"
+	"self-discipline/utils/httpclient"
 	"strconv"
 	"time"
 
@@ -42,9 +45,57 @@ func Login(c *gin.Context) {
 	}
 }
 
+// @Tags Base
+// @Summary 微信登录
+// @Accept application/x-www-form-urlencoded
+// @Produce  application/json
+// @Param data formData request.WechatLogin true "token"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
+// @Router /v1/wechatlogin [post]
 func WechatLogin(c *gin.Context) {
-	var accessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code"
-	_ = accessTokenUrl
+	var req request.WechatLogin
+	_ = c.ShouldBind(&req)
+
+	if err := utils.Verify(req, utils.WechatLoginVerify); err != nil {
+		response.FailWithVerify(err.Error(), c)
+		return
+	}
+	//获取access_token url
+	var accessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token"
+	//appid=%s&secret=%s&code=%s&grant_type=authorization_code
+
+	form := make(httpURL.Values)
+	form["appid"] = []string{global.CONFIG.Wechat.AppID}
+	form["secret"] = []string{global.CONFIG.Wechat.AppSecret}
+	form["code"] = []string{req.Code}
+	form["grant_type"] = []string{"authorization_code"}
+
+	body, err := httpclient.Get(accessTokenUrl, form, httpclient.WithTTL(time.Second*3))
+	if err != nil {
+		global.LOG.Error("登陆失败! 获取access_token错误!", zap.Any("err", err))
+		response.FailWithCode(response.WechatAccessTokenErr, c)
+	}
+
+	type accessTokenInfo struct {
+		AccessToken  string `json:"access_token"`
+		ExpiresIn    int    `json:"expires_in"`
+		RefreshToken string `json:"refresh_token"`
+		Openid       string `json:"openid"`
+		Scope        string `json:"scope"`
+	}
+	res := new(accessTokenInfo)
+	err = json.Unmarshal(body, res)
+	if err != nil {
+		global.LOG.Error("登陆失败! 解析access_token返回值错误!", zap.Any("err", err))
+		response.FailWithCode(response.WechatAccessTokenErr, c)
+	}
+
+	//通过access_token获取userinfo url
+	var userInfoUrl = "https://api.weixin.qq.com/sns/userinfo"
+	//?access_token=ACCESS_TOKEN&openid=OPENID
+	form = make(httpURL.Values)
+	form["access_token"] = []string{res.AccessToken}
+	form["openid"] = []string{res.Openid}
 }
 
 // 登录以后签发jwt
