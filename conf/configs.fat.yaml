@@ -15,7 +15,7 @@ mysql:
 redis:
   db: 0
   addr: 127.0.0.1:6379
-  password: "3M77rbraihrKCctF"
+  password: ""
 system:
   addr: 8800
   pprof: false
@@ -32,7 +32,3 @@ zap:
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
   log-in-console: true
-
-wechat:
-  appid:
-  appsecret:

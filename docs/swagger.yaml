@@ -5,29 +5,6 @@ info:
   title: Swagger Example API
   version: 0.0.1
 paths:
-  /v1/Register:
-    post:
-      consumes:
-      - application/x-www-form-urlencoded
-      parameters:
-      - description: 密码
-        in: formData
-        name: password
-        type: string
-      - description: 手机号码
-        in: formData
-        name: phone
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: '{"success":true,"data":{},"msg":"注册成功"}'
-          schema:
-            type: string
-      summary: 用户注册
-      tags:
-      - Base
   /v1/login:
     post:
       consumes:
@@ -49,6 +26,29 @@ paths:
           schema:
             type: string
       summary: 用户登录
+      tags:
+      - Base
+  /v1/register:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - description: 密码
+        in: formData
+        name: password
+        type: string
+      - description: 手机号码
+        in: formData
+        name: phone
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          schema:
+            type: string
+      summary: 用户注册
       tags:
       - Base
 securityDefinitions:
