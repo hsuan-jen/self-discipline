@@ -7,7 +7,7 @@ services:
         build: .
         restart: on-failure
         ports: 
-            - '9999:9999'
+            - '8800:8800'
         depends_on:
             - mysql
             - redis
@@ -30,13 +30,13 @@ services:
         ]
         environment:
             MYSQL_ROOT_PASSWORD: 123456
-            MYSQL_DATABASE: go-docker
+            MYSQL_DATABASE: self-discipline
             TZ: Asia/Shanghai
             #MYSQL_USER: user # 创建新用户
             #MYSQL_PASSWORD: user_password # 新用户的密码
         volumes:
-            - mysql_data:/var/lib/mysql
-            #- /usr/mysql/data:/var/lib/mysql
+            #- mysql_data:/var/lib/mysql
+            - /usr/mysql/data:/var/lib/mysql
             - /usr/mysql/conf/my.cnf:/etc/mysql/my.cnf
         networks:
             - network
@@ -47,7 +47,8 @@ services:
         ports:
             - "6379:6379"
         volumes:
-            - redis_data:/var/lib/redis
+            #- redis_data:/var/lib/redis
+            - /usr/redis/data:/var/lib/redis
         networks:
             - network
 
@@ -55,6 +56,6 @@ networks:
     network:
         driver: "bridge"
 
-volumes:
-    mysql_data:
-    redis_data:
+#volumes:
+    #mysql_data:
+    #redis_data:
