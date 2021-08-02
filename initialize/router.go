@@ -17,6 +17,7 @@ import (
 // 初始化总路由
 
 func Routers() *gin.Engine {
+	gin.SetMode(global.CONFIG.System.Mode)
 	//var Router = gin.Default()
 	var Router = gin.New()
 	Router.Use(middleware.GinRecovery(true))
