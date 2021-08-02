@@ -5,6 +5,7 @@ import (
 	"self-discipline/global"
 	"self-discipline/middleware"
 	"self-discipline/router"
+	"self-discipline/utils/env"
 
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
@@ -23,8 +24,10 @@ func Routers() *gin.Engine {
 
 	// register pprof to gin
 	if global.CONFIG.System.Pprof {
-		pprof.Register(Router)
-		global.LOG.Info("register pprof handler")
+		if !env.Active().IsPro() {
+			pprof.Register(Router)
+			global.LOG.Info("register pprof handler")
+		}
 	}
 
 	//register prometheus
@@ -33,8 +36,10 @@ func Routers() *gin.Engine {
 		global.LOG.Info("register promhttp handler")
 	}
 
-	Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	global.LOG.Info("register swagger handler")
+	if !env.Active().IsPro() {
+		Router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+		global.LOG.Info("register swagger handler")
+	}
 
 	// register rate
 	if global.CONFIG.System.Rate {
