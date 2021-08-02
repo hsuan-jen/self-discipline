@@ -3,6 +3,7 @@ package middleware
 import (
 	"bytes"
 	"io/ioutil"
+	"regexp"
 	"self-discipline/global"
 	"time"
 
@@ -26,6 +27,12 @@ func GinLogger() gin.HandlerFunc {
 		start := time.Now()
 		path := c.Request.URL.Path
 		query := c.Request.URL.RawQuery
+
+		// 过滤文件请求
+		reg := regexp.MustCompile("\\.[^\\s]")
+		if reg.MatchString(path) {
+			return
+		}
 
 		// Read the Body content
 		var bodyBytes []byte
