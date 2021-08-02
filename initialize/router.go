@@ -16,7 +16,10 @@ import (
 // 初始化总路由
 
 func Routers() *gin.Engine {
-	var Router = gin.Default()
+	//var Router = gin.Default()
+	var Router = gin.New()
+	Router.Use(middleware.GinRecovery(true))
+	Router.Use(middleware.GinLogger())
 
 	// register pprof to gin
 	if global.CONFIG.System.Pprof {
@@ -42,8 +45,6 @@ func Routers() *gin.Engine {
 	//Router.StaticFS(global.CONFIG.Local.Path, http.Dir(global.ONFIG.Local.Path)) // 为用户头像和文件提供静态地址
 	// Router.Use(middleware.LoadTls())  // 打开就能玩https了
 
-	Router.Use(middleware.GinRecovery(true))
-	global.LOG.Info("use middleware logger")
 	// 跨域
 	Router.Use(middleware.Cors()) // 如需跨域可以打开
 	global.LOG.Info("use middleware cors")
