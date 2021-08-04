@@ -3,19 +3,19 @@ jwt:
   expires-time: 604800
   buffer-time: 86400
 mysql:
-  path: 18.162.156.222:13306
+  path: 47.119.117.56:3306
   config: charset=utf8mb4&parseTime=True&loc=Local
   db-name: self-discipline
   username: root
-  password: Exc7slbyrrLwkbBt
+  password: self-discipline
   max-idle-conns: 10
   max-open-conns: 100
   log-mode: false
   log-zap: ""
 redis:
   db: 0
-  addr: 18.162.156.222:6379
-  password: "3M77rbraihrKCctF"
+  addr: 127.0.0.1:6379
+  password: ""
 system:
   mode: release                 # debug, release, test
   addr: 8800
