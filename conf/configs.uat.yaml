@@ -14,8 +14,8 @@ mysql:
   log-zap: ""
 redis:
   db: 0
-  addr: 127.0.0.1:6379
-  password: ""
+  addr: 47.119.117.56:6379
+  password: "123456"
 system:
   mode: release                 # debug, release, test
   addr: 8800
