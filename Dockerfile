@@ -29,7 +29,7 @@ WORKDIR /go/src/self-discipline
 COPY --from=0 /go/src/self-discipline ./
 
 # EXPOSE 设置端口映射
-EXPOSE 9999/tcp
+EXPOSE 8800/tcp
 
 # CMD 设置启动命令
-CMD ["./self-discipline"]
+CMD ["./self-discipline", "-env", "uat"]
