@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"self-discipline/global"
-	"self-discipline/model/response"
+	"self-discipline/model/common/response"
 	"time"
 
 	"github.com/gin-gonic/gin"

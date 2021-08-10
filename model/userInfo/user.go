@@ -1,4 +1,4 @@
-package model
+package userInfo
 
 import (
 	"self-discipline/global"

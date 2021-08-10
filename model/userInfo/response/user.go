@@ -1,7 +1,7 @@
 package response
 
 import (
-	"self-discipline/model"
+	model "self-discipline/model/userInfo"
 )
 
 type UserResponse struct {

@@ -3,16 +3,16 @@ package user
 import (
 	"errors"
 	"self-discipline/global"
-	"self-discipline/model"
+	"self-discipline/model/userInfo"
 	"self-discipline/utils"
 
 	uuid "github.com/satori/go.uuid"
 	"gorm.io/gorm"
 )
 
-func Register(u *model.Users) (err error, userInter *model.Users) {
+func Register(u *userInfo.Users) (err error, userInter *userInfo.Users) {
 
-	var user model.Users
+	var user userInfo.Users
 
 	if !errors.Is(global.DB.Select("phone").Where("phone = ?", u.Phone).First(&user).Error, gorm.ErrRecordNotFound) {
 		// 判断用户名是否注册

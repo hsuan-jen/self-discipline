@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"self-discipline/global"
-	"self-discipline/model/request"
+	"self-discipline/model/userInfo/request"
 	"testing"
 	"time"
 

@@ -4,9 +4,10 @@ import (
 	"self-discipline/configs"
 	"self-discipline/global"
 	"self-discipline/middleware"
-	"self-discipline/model"
-	"self-discipline/model/request"
-	"self-discipline/model/response"
+	"self-discipline/model/common/response"
+	"self-discipline/model/userInfo"
+	userInfoReq "self-discipline/model/userInfo/request"
+	userInfoRes "self-discipline/model/userInfo/response"
 	userService "self-discipline/service/user"
 	"self-discipline/utils"
 	"strconv"
@@ -25,7 +26,7 @@ import (
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
 // @Router /v1/login [post]
 func Login(c *gin.Context) {
-	var req request.Login
+	var req userInfoReq.Login
 	_ = c.ShouldBind(&req)
 
 	if err := utils.Verify(req, utils.LoginVerify); err != nil {
@@ -33,7 +34,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	u := model.Users{Phone: req.Phone, Password: req.Password}
+	u := userInfo.Users{Phone: req.Phone, Password: req.Password}
 	if err, user := userService.Login(&u); err != nil {
 		global.LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Any("err", err))
 		response.FailWithCode(response.UserEmpty, c)
@@ -43,9 +44,9 @@ func Login(c *gin.Context) {
 }
 
 // 登录以后签发jwt
-func tokenNext(c *gin.Context, user model.Users) {
+func tokenNext(c *gin.Context, user userInfo.Users) {
 	j := &middleware.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
-	claims := request.CustomClaims{
+	claims := userInfoReq.CustomClaims{
 		UUID:     user.UUID,
 		ID:       user.ID,
 		NickName: user.Nickname,
@@ -77,7 +78,7 @@ func tokenNext(c *gin.Context, user model.Users) {
 		return
 	}
 
-	response.OkWithDetailed(response.LoginResponse{
+	response.OkWithDetailed(userInfoRes.LoginResponse{
 		User:      user,
 		Token:     token,
 		ExpiresAt: claims.StandardClaims.ExpiresAt * 1000,

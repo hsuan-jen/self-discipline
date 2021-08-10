@@ -2,9 +2,10 @@ package user
 
 import (
 	"self-discipline/global"
-	"self-discipline/model"
-	"self-discipline/model/request"
-	"self-discipline/model/response"
+	"self-discipline/model/common/response"
+	"self-discipline/model/userInfo"
+	userInfoReq "self-discipline/model/userInfo/request"
+	userInfoRes "self-discipline/model/userInfo/response"
 	userService "self-discipline/service/user"
 	"self-discipline/utils"
 
@@ -20,7 +21,7 @@ import (
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"注册成功"}"
 // @Router /v1/register [post]
 func Register(c *gin.Context) {
-	var req request.Register
+	var req userInfoReq.Register
 	_ = c.ShouldBind(&req)
 
 	if err := utils.Verify(req, utils.RegisterVerify); err != nil {
@@ -28,11 +29,11 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	u := model.Users{Phone: req.Phone, Password: req.Password}
+	u := userInfo.Users{Phone: req.Phone, Password: req.Password}
 	err, userReturn := userService.Register(&u)
 	if err != nil {
 		global.LOG.Error("注册失败!", zap.Any("err", err))
-		response.FailWithDetailed(response.UserResponse{User: userReturn}, response.UserCreateError, c)
+		response.FailWithDetailed(userInfoRes.UserResponse{User: userReturn}, response.UserCreateError, c)
 		return
 	}
 	response.OkWithDetailed(userReturn, "注册成功", c)

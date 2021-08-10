@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"self-discipline/configs"
 	"self-discipline/global"
-	"self-discipline/model"
+	"self-discipline/model/userInfo"
 	"self-discipline/utils"
 	"strconv"
 	"time"
 )
 
-func SaveUserRedis(u *model.Users) error {
+func SaveUserRedis(u *userInfo.Users) error {
 	m, err := utils.Struct2Map(u)
 	if err != nil {
 		return err
