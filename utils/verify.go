@@ -4,4 +4,5 @@ var (
 	LoginVerify       = Rules{"Phone": {NotEmpty()}, "Password": {NotEmpty()}}
 	RegisterVerify    = Rules{"Phone": {NotEmpty()}, "Password": {NotEmpty()}}
 	WechatLoginVerify = Rules{"Token": {NotEmpty()}}
+	IssueVerify       = Rules{"Content": {NotEmpty()}}
 )
