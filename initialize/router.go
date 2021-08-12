@@ -18,10 +18,7 @@ import (
 
 func Routers() *gin.Engine {
 	gin.SetMode(global.CONFIG.System.Mode)
-	//var Router = gin.Default()
-	var Router = gin.New()
-	Router.Use(middleware.GinRecovery(true))
-	Router.Use(middleware.GinLogger())
+	var Router = gin.Default()
 
 	// register pprof to gin
 	if global.CONFIG.System.Pprof {
@@ -55,10 +52,13 @@ func Routers() *gin.Engine {
 	Router.Use(middleware.Cors()) // 如需跨域可以打开
 	global.LOG.Info("use middleware cors")
 
+	baseRouter := router.RouterGroupApp
+
 	// 方便统一添加路由组前缀 多服务器上线使用
 	PublicGroup := Router.Group("")
+	PublicGroup.Use(middleware.GinLogger())
 	{
-		router.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
+		baseRouter.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
 		router.InitWechatRouter(PublicGroup)
 	}
 

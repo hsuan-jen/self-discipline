@@ -8,7 +8,6 @@ import (
 	"self-discipline/model/userInfo"
 	userInfoReq "self-discipline/model/userInfo/request"
 	userInfoRes "self-discipline/model/userInfo/response"
-	userService "self-discipline/service/user"
 	"self-discipline/utils"
 	"strconv"
 	"time"
@@ -25,7 +24,7 @@ import (
 // @Param data formData request.Login true "手机号码, 密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
 // @Router /v1/login [post]
-func Login(c *gin.Context) {
+func (h *BaseApi) Login(c *gin.Context) {
 	var req userInfoReq.Login
 	_ = c.ShouldBind(&req)
 

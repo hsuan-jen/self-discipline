@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func Register(u *userInfo.Users) (err error, userInter *userInfo.Users) {
+func (h *BaseService) Register(u *userInfo.Users) (err error, userInter *userInfo.Users) {
 
 	var user userInfo.Users
 

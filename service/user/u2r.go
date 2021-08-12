@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func SaveUserRedis(u *userInfo.Users) error {
+func (h *BaseService) SaveUserRedis(u *userInfo.Users) error {
 	m, err := utils.Struct2Map(u)
 	if err != nil {
 		return err

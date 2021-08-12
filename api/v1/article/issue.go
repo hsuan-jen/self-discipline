@@ -4,13 +4,12 @@ import (
 	"self-discipline/model/article"
 	articleReq "self-discipline/model/article/request"
 	"self-discipline/model/common/response"
-	articleService "self-discipline/service/article"
 	"self-discipline/utils"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Issue(ctx *gin.Context) {
+func (h *Handler) Issue(ctx *gin.Context) {
 	var req articleReq.Issue
 	_ = ctx.ShouldBind(&req)
 
