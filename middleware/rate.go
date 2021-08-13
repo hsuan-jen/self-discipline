@@ -13,7 +13,7 @@ func Rate() gin.HandlerFunc {
 	limiter := rate.NewLimiter(rate.Every(time.Second*1), global.CONFIG.System.MaxBurstSize)
 	return func(c *gin.Context) {
 		if !limiter.Allow() {
-			response.FailWithCode(response.TooManyRequests, c)
+			response.FailWithMessage("Too Many Requests", c)
 			c.Abort()
 			return
 		}

@@ -24,7 +24,7 @@ func (h *BaseApi) Register(c *gin.Context) {
 	_ = c.ShouldBind(&req)
 
 	if err := utils.Verify(req, utils.RegisterVerify); err != nil {
-		response.FailWithVerify(err.Error(), c)
+		response.FailWithMessage(err.Error(), c)
 		return
 	}
 
@@ -32,7 +32,7 @@ func (h *BaseApi) Register(c *gin.Context) {
 	err, userReturn := userService.Register(&u)
 	if err != nil {
 		global.LOG.Error("注册失败!", zap.Any("err", err))
-		response.FailWithDetailed(userInfoRes.UserResponse{User: userReturn}, response.UserCreateError, c)
+		response.FailWithDetailed(userInfoRes.UserResponse{User: userReturn}, "创建用户失败", c)
 		return
 	}
 	response.OkWithDetailed(userReturn, "注册成功", c)

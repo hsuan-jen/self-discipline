@@ -29,14 +29,14 @@ func (h *BaseApi) Login(c *gin.Context) {
 	_ = c.ShouldBind(&req)
 
 	if err := utils.Verify(req, utils.LoginVerify); err != nil {
-		response.FailWithVerify(err.Error(), c)
+		response.FailWithMessage(err.Error(), c)
 		return
 	}
 
 	u := userInfo.Users{Phone: req.Phone, Password: req.Password}
 	if err, user := userService.Login(&u); err != nil {
 		global.LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Any("err", err))
-		response.FailWithCode(response.UserEmpty, c)
+		response.FailWithMessage("用户名不存在或者密码错误", c)
 	} else {
 		tokenNext(c, *user)
 	}
@@ -59,7 +59,7 @@ func tokenNext(c *gin.Context, user userInfo.Users) {
 	token, err := j.CreateToken(claims)
 	if err != nil {
 		global.LOG.Error("获取token失败!", zap.Any("err", err))
-		response.FailWithCode(response.JwtCreateError, c)
+		response.FailWithMessage("获取token失败", c)
 		return
 	}
 
@@ -67,13 +67,13 @@ func tokenNext(c *gin.Context, user userInfo.Users) {
 
 	if err := userService.SetRedisJWT(token, rkey); err != nil {
 		global.LOG.Error("设置登录状态失败!", zap.Any("err", err))
-		response.FailWithCode(response.UserSetStatusErr, c)
+		response.FailWithMessage("设置登录状态失败", c)
 		return
 	}
 
 	if err = userService.SaveUserRedis(&user); err != nil {
 		global.LOG.Error("记录登录信息失败!", zap.Any("err", err))
-		response.FailWithCode(response.UserRecordErr, c)
+		response.FailWithMessage("记录登录信息失败", c)
 		return
 	}
 

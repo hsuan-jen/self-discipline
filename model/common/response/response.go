@@ -15,7 +15,6 @@ type Response struct {
 const (
 	ERROR   = 7
 	SUCCESS = 0
-	ERRVERIFY = 1000
 )
 
 func Result(code int, data interface{}, msg string, c *gin.Context) {
@@ -51,16 +50,6 @@ func FailWithMessage(message string, c *gin.Context) {
 	Result(ERROR, map[string]interface{}{}, message, c)
 }
 
-func FailWithVerify(message string, c *gin.Context) {
-	Result(ERRVERIFY, map[string]interface{}{}, message, c)
-}
-
-func FailWithCode(code int, c *gin.Context) {
-	message := Text(code)
-	Result(code, map[string]interface{}{}, message, c)
-}
-
-func FailWithDetailed(data interface{}, code int, c *gin.Context) {
-	message := Text(code)
-	Result(code, data, message, c)
+func FailWithDetailed(data interface{}, message string, c *gin.Context) {
+	Result(ERROR, data, message, c)
 }

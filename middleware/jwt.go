@@ -20,7 +20,7 @@ func JWTAuth() gin.HandlerFunc {
 		// 我们这里jwt鉴权取头部信息 x-token 登录时回返回token信息 这里前端需要把token存储到cookie或者本地localStorage中 不过需要跟后端协商过期时间 可以约定刷新令牌或者重新登录
 		token := c.Request.Header.Get("x-token")
 		if token == "" {
-			response.FailWithDetailed(gin.H{"reload": true}, response.JwtError, c)
+			response.FailWithDetailed(gin.H{"reload": true}, "未登录或非法访问", c)
 			c.Abort()
 			return
 		}
@@ -29,23 +29,25 @@ func JWTAuth() gin.HandlerFunc {
 		claims, err := j.ParseToken(token)
 		if err != nil {
 			if err == TokenExpired {
-				response.FailWithDetailed(gin.H{"reload": true}, response.JwtOverdue, c)
+				response.FailWithDetailed(gin.H{"reload": true}, "授权已过期", c)
 				c.Abort()
 				return
 			}
 
 			global.LOG.Error(err.Error())
-			response.FailWithDetailed(gin.H{"reload": true}, response.JwtResoluErr, c)
+			response.FailWithDetailed(gin.H{"reload": true}, "jwt解析错误", c)
 			c.Abort()
 			return
 		}
 
 		rKey := configs.RedisKeyJWT + strconv.FormatUint(claims.ID, 10)
-		if _, err = global.REDIS.Get(rKey).Result(); err != nil {
-			response.FailWithDetailed(gin.H{"reload": true}, response.JwtOverdue, c)
+		if token, err = global.REDIS.Get(rKey).Result(); err != nil {
+			response.FailWithDetailed(gin.H{"reload": true}, "授权已过期", c)
 			c.Abort()
 			return
 		}
+
+		c.Set("claims", claims)
 		c.Next()
 	}
 }
