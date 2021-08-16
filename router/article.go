@@ -16,6 +16,7 @@ func (h *ArticleRouter) InitArticleRouter(Router *gin.RouterGroup) (R gin.IRoute
 	{
 		ArticleRouter.POST("issue", articleApi.Issue)
 		ArticleRouter.POST("list", articleApi.GetList)
+		ArticleRouter.POST("give", articleApi.Give)
 	}
 	return ArticleRouter
 }

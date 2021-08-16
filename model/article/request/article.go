@@ -10,3 +10,7 @@ type GetList struct {
 	Keyword string `json:"keyword" form:"keyword"`
 	request.PageInfo
 }
+
+type Give struct {
+	ArticleID uint64 `json:"article_id" form:"article_id"`
+}
