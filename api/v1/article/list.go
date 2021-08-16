@@ -3,6 +3,7 @@ package article
 import (
 	"self-discipline/global"
 	articleReq "self-discipline/model/article/request"
+	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
 	"self-discipline/utils"
 
@@ -19,7 +20,15 @@ func (h *Handler) GetList(ctx *gin.Context) {
 		return
 	}
 
-	list, err := articleService.GetList(&req)
+	claims, ok := ctx.Get("claims")
+	if !ok {
+		global.LOG.Error("获取用户标识错误")
+		response.FailWithMessage("获取用户标识错误", ctx)
+		return
+	}
+	waitUse := claims.(*request.CustomClaims)
+
+	list, err := articleService.GetList(&req, waitUse.ID)
 	if err != nil {
 		global.LOG.Error("查询动态列表失败！", zap.Any("err", err))
 		response.FailWithMessage(err.Error(), ctx)
