@@ -4,6 +4,7 @@ import (
 	"self-discipline/configs"
 	"self-discipline/global"
 	"self-discipline/middleware"
+	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
 	"self-discipline/model/userInfo"
 	userInfoReq "self-discipline/model/userInfo/request"
@@ -45,7 +46,7 @@ func (h *BaseApi) Login(c *gin.Context) {
 // 登录以后签发jwt
 func tokenNext(c *gin.Context, user userInfo.Users) {
 	j := &middleware.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
-	claims := userInfoReq.CustomClaims{
+	claims := request.CustomClaims{
 		UUID:     user.UUID,
 		ID:       user.ID,
 		NickName: user.Nickname,

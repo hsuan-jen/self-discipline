@@ -52,7 +52,8 @@ func Routers() *gin.Engine {
 	Router.Use(middleware.Cors()) // 如需跨域可以打开
 	global.LOG.Info("use middleware cors")
 
-	baseRouter := router.RouterGroupApp
+	baseRouter := router.RouterGroupApp.BaseRouter
+	articleRouter := router.RouterGroupApp.ArticleRouter
 
 	// 方便统一添加路由组前缀 多服务器上线使用
 	PublicGroup := Router.Group("")
@@ -65,7 +66,7 @@ func Routers() *gin.Engine {
 	PrivateGroup := Router.Group("")
 	PrivateGroup.Use(middleware.JWTAuth())
 	{
-		//systemRouter.InitUserRouter(PrivateGroup)                   // 用户操作
+		articleRouter.InitArticleRouter(PrivateGroup) // 用户操作
 
 	}
 	global.LOG.Info("router register success")

@@ -9,7 +9,7 @@ import (
 type ArticleRouter struct {
 }
 
-func (h *BaseRouter) InitArticleRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
+func (h *ArticleRouter) InitArticleRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 
 	var articleApi = v1.ApiGroupApp.ArticleApiGroup.Handler
 	ArticleRouter := Router.Group("v1")

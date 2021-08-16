@@ -4,8 +4,8 @@ import (
 	"errors"
 	"self-discipline/configs"
 	"self-discipline/global"
+	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
-	"self-discipline/model/userInfo/request"
 
 	//"self-discipline/service"
 	"strconv"

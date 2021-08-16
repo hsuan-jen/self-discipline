@@ -4,6 +4,7 @@ import (
 	"self-discipline/global"
 	"self-discipline/model/article"
 	articleReq "self-discipline/model/article/request"
+	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
 	"self-discipline/utils"
 
@@ -19,6 +20,7 @@ import (
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
 // @Router /v1/article/issue [post]
 func (h *Handler) Issue(ctx *gin.Context) {
+
 	var req articleReq.Issue
 	_ = ctx.ShouldBind(&req)
 
@@ -27,7 +29,15 @@ func (h *Handler) Issue(ctx *gin.Context) {
 		return
 	}
 
-	article := article.Articles{Content: req.Content, UserId: req.UserId}
+	claims, ok := ctx.Get("claims")
+	if !ok {
+		global.LOG.Error("获取用户标识错误，发布失败！")
+		response.FailWithMessage("获取用户标识错误，发布失败！", ctx)
+		return
+	}
+	waitUse := claims.(*request.CustomClaims)
+
+	article := article.Articles{Content: req.Content, UserId: waitUse.ID}
 	err := articleService.AddArticle(&article)
 
 	if err != nil {
@@ -35,5 +45,7 @@ func (h *Handler) Issue(ctx *gin.Context) {
 		response.FailWithMessage("发布失败!", ctx)
 		return
 	}
+
+	response.OkWithMessage("发布成功", ctx)
 
 }
