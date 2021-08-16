@@ -11,6 +11,13 @@ import (
 	"go.uber.org/zap"
 )
 
+// @Tags Base
+// @Summary 用户登录
+// @Accept application/x-www-form-urlencoded
+// @Produce  application/json
+// @Param data formData articleReq.GetList true "关键词, 页码， 页数大小"
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"操作成功"}"
+// @Router /v1/article/list [post]
 func (h *Handler) GetList(ctx *gin.Context) {
 	var req articleReq.GetList
 	_ = ctx.ShouldBind(&req)
