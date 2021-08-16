@@ -66,7 +66,7 @@ func Routers() *gin.Engine {
 	PrivateGroup := Router.Group("")
 	PrivateGroup.Use(middleware.JWTAuth())
 	{
-		articleRouter.InitArticleRouter(PrivateGroup) // 用户操作
+		articleRouter.InitArticleRouter(PrivateGroup) // 用户动态
 
 	}
 	global.LOG.Info("router register success")

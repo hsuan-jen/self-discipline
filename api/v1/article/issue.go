@@ -37,7 +37,7 @@ func (h *Handler) Issue(ctx *gin.Context) {
 	}
 	waitUse := claims.(*request.CustomClaims)
 
-	article := article.Articles{Content: req.Content, UserId: waitUse.ID}
+	article := article.Articles{Content: req.Content, UserID: waitUse.ID}
 	err := articleService.AddArticle(&article)
 
 	if err != nil {
