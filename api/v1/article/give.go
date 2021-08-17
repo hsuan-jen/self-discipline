@@ -8,6 +8,7 @@ import (
 	"self-discipline/utils"
 
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 // @Tags Base
@@ -35,7 +36,9 @@ func (h *Handler) Give(ctx *gin.Context) {
 	waitUse := claims.(*request.CustomClaims)
 	err := articleService.Give(waitUse.ID, req.ArticleID)
 	if err != nil {
-
+		global.LOG.Error("点赞失败！", zap.Any("err", err))
+		response.FailWithMessage("点赞失败！", ctx)
+		return
 	}
 
 	response.Ok(ctx)
