@@ -15,6 +15,7 @@ import (
 // @Summary 点赞
 // @Accept application/x-www-form-urlencoded
 // @Produce  application/json
+// @Param data formData articleReq.Give true "动态标识"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"操作成功"}"
 // @Router /v1/article/give [post]
 func (h *Handler) Give(ctx *gin.Context) {
