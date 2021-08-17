@@ -7,4 +7,5 @@ var (
 	IssueVerify       = Rules{"Content": {NotEmpty()}}
 	PageInfoVerify    = Rules{"Page": {NotEmpty()}, "PageSize": {NotEmpty(), Le("15"), Ge("1")}}
 	GiveVerify        = Rules{"ArticleID": {NotEmpty()}}
+	LeaveVerify       = Rules{"ArticleID": {NotEmpty()}, "Msg": {NotEmpty()}}
 )

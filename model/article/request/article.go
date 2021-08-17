@@ -14,3 +14,8 @@ type GetList struct {
 type Give struct {
 	ArticleID uint64 `json:"article_id" form:"article_id"`
 }
+
+type Leave struct {
+	ArticleID uint64 `json:"article_id" form:"article_id"`
+	Msg       string `json:"msg" form:"msg"`
+}
