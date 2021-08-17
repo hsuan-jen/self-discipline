@@ -29,4 +29,5 @@ type ArticleLeaves struct {
 	UserID    uint64 `json:"user_id"`
 	ArticleID uint64 `json:"article_id"`
 	Msg       string `json:"msg"`
+	PID       uint64 `json:"pid"`
 }

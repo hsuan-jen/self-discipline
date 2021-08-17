@@ -3,6 +3,7 @@ package article
 import (
 	"self-discipline/global"
 	"self-discipline/model/article"
+	articleReq "self-discipline/model/article/request"
 
 	"gorm.io/gorm"
 )
@@ -21,4 +22,18 @@ func (h *Handler) Leave(m *article.ArticleLeaves) error {
 		return nil
 	})
 	return err
+}
+
+func (h *Handler) LeaveList(m *articleReq.LeaveList) ([]article.ArticleLeaves, error) {
+
+	var leaves []article.ArticleLeaves
+	limit := m.PageSize
+	offset := m.PageSize * (m.Page - 1)
+
+	err := global.DB.Where("article_id = ?", m.ArticleID).
+		Limit(limit).
+		Offset(offset).
+		Find(&leaves).Error
+
+	return leaves, err
 }

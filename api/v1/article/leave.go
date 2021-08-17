@@ -45,3 +45,14 @@ func (h *Handler) Leave(ctx *gin.Context) {
 
 	response.Ok(ctx)
 }
+
+func (h *Handler) LeaveList(ctx *gin.Context) {
+	var req articleReq.LeaveList
+	_ = ctx.ShouldBind(&req)
+
+	if err := utils.Verify(req, utils.LeaveListVerify); err != nil {
+		response.FailWithMessage(err.Error(), ctx)
+	}
+
+	//err := articleService.LeaveList(req)
+}

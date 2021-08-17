@@ -19,3 +19,8 @@ type Leave struct {
 	ArticleID uint64 `json:"article_id" form:"article_id"`
 	Msg       string `json:"msg" form:"msg"`
 }
+
+type LeaveList struct {
+	ArticleID uint64 `json:"article_id" form:"article_id"`
+	request.PageInfo
+}
