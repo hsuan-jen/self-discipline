@@ -6,7 +6,7 @@ import (
 	"self-discipline/model/userInfo"
 	userInfoReq "self-discipline/model/userInfo/request"
 	userInfoRes "self-discipline/model/userInfo/response"
-	"self-discipline/utils"
+	"self-discipline/utils/validator"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -21,10 +21,9 @@ import (
 // @Router /v1/register [post]
 func (h *BaseApi) Register(c *gin.Context) {
 	var req userInfoReq.Register
-	_ = c.ShouldBind(&req)
 
-	if err := utils.Verify(req, utils.RegisterVerify); err != nil {
-		response.FailWithMessage(err.Error(), c)
+	if ok, msg := validator.Verify(c, &req); !ok {
+		response.FailWithMessage(msg, c)
 		return
 	}
 

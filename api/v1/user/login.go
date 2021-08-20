@@ -9,7 +9,7 @@ import (
 	"self-discipline/model/userInfo"
 	userInfoReq "self-discipline/model/userInfo/request"
 	userInfoRes "self-discipline/model/userInfo/response"
-	"self-discipline/utils"
+	"self-discipline/utils/validator"
 	"strconv"
 	"time"
 
@@ -29,8 +29,8 @@ func (h *BaseApi) Login(c *gin.Context) {
 	var req userInfoReq.Login
 	_ = c.ShouldBind(&req)
 
-	if err := utils.Verify(req, utils.LoginVerify); err != nil {
-		response.FailWithMessage(err.Error(), c)
+	if ok, msg := validator.Verify(c, &req); !ok {
+		response.FailWithMessage(msg, c)
 		return
 	}
 

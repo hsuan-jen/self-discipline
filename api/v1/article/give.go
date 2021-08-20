@@ -5,7 +5,7 @@ import (
 	articleReq "self-discipline/model/article/request"
 	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
-	"self-discipline/utils"
+	"self-discipline/utils/validator"
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -22,8 +22,8 @@ func (h *Handler) Give(ctx *gin.Context) {
 	var req articleReq.Give
 	_ = ctx.ShouldBind(&req)
 
-	if err := utils.Verify(req, utils.GiveVerify); err != nil {
-		response.FailWithMessage(err.Error(), ctx)
+	if ok, msg := validator.Verify(ctx, &req); !ok {
+		response.FailWithMessage(msg, ctx)
 		return
 	}
 

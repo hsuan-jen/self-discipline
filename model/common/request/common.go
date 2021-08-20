@@ -2,8 +2,8 @@ package request
 
 // Paging common input parameter structure
 type PageInfo struct {
-	Page     int `json:"page" form:"page"`         // 页码
-	PageSize int `json:"pageSize" form:"pageSize"` // 每页大小
+	Page     int `json:"page" form:"page" validate:"required"`                // 页码
+	PageSize int `json:"pageSize" form:"pageSize" validate:"required,max=15"` // 每页大小
 }
 
 // Find by id structure
