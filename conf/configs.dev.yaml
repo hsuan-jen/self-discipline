@@ -1,0 +1,35 @@
+jwt:
+  signing-key: Commander
+  expires-time: 604800
+  buffer-time: 86400
+mysql:
+  path: 127.0.0.1:3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: self-discipline
+  username: root
+  password: root
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: false
+  log-zap: ""
+redis:
+  db: 0
+  addr: 127.0.0.1:6379
+  password: ""
+system:
+  mode: release                 # debug, release, test
+  addr: 8800
+  pprof: false
+  promhttp: false
+  rate: true
+  max-burstSize: 100000
+zap:
+  level: info
+  format: console
+  prefix: '[SELF-DISCIPLINE]'
+  director: log
+  link-name: latest_log
+  showLine: true
+  encode-level: LowercaseColorLevelEncoder
+  stacktrace-key: stacktrace
+  log-in-console: true
