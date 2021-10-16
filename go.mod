@@ -29,6 +29,7 @@ require (
 	github.com/unrolled/secure v1.0.9
 	go.uber.org/zap v1.18.1
 	golang.org/x/net v0.0.0-20210716203947-853a461950ff // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac
 	golang.org/x/tools v0.1.5 // indirect

@@ -7,10 +7,6 @@ import (
 )
 
 const (
-	methodResNum = 2
-)
-
-const (
 	OptIgnore    = "-"
 	OptOmitempty = "omitempty"
 	OptDive      = "dive"

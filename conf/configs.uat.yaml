@@ -15,7 +15,7 @@ mysql:
 redis:
   db: 0
   addr: 47.119.117.56:6379
-  password: "123456"
+  password: "123qwe123"
 system:
   mode: release                 # debug, release, test
   addr: 8800
@@ -23,6 +23,7 @@ system:
   promhttp: false
   rate: true
   max-burstSize: 100000
+  use-multipoint: false
 zap:
   level: info
   format: console

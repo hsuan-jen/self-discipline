@@ -3,12 +3,13 @@ package user
 import (
 	"self-discipline/configs"
 	"self-discipline/global"
-	"self-discipline/middleware"
 	"self-discipline/model/common/request"
 	"self-discipline/model/common/response"
 	"self-discipline/model/userInfo"
 	userInfoReq "self-discipline/model/userInfo/request"
 	userInfoRes "self-discipline/model/userInfo/response"
+	"self-discipline/service"
+	"self-discipline/utils"
 	"self-discipline/utils/validator"
 	"strconv"
 	"time"
@@ -45,7 +46,7 @@ func (h *BaseApi) Login(c *gin.Context) {
 
 // 登录以后签发jwt
 func tokenNext(c *gin.Context, user userInfo.Users) {
-	j := &middleware.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
+	j := utils.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
 	claims := request.CustomClaims{
 		UUID:     user.UUID,
 		ID:       user.ID,
@@ -64,9 +65,10 @@ func tokenNext(c *gin.Context, user userInfo.Users) {
 		return
 	}
 
-	rkey := configs.RedisKeyJWT + strconv.FormatUint(user.ID, 10)
+	var jwtService = service.ServiceGroupApp.SystemServiceGroup.JwtService
+	rkey := utils.MergeStr([]string{configs.RedisKeyJWT, strconv.FormatUint(user.ID, 10)})
 
-	if err := userService.SetRedisJWT(token, rkey); err != nil {
+	if err := jwtService.SetRedisJWT(token, rkey); err != nil {
 		global.LOG.Error("设置登录状态失败!", zap.Any("err", err))
 		response.FailWithMessage("设置登录状态失败", c)
 		return
