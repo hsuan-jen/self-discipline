@@ -52,14 +52,14 @@ func Routers() *gin.Engine {
 	Router.Use(middleware.Cors()) // 如需跨域可以打开
 	global.LOG.Info("use middleware cors")
 
-	baseRouter := router.RouterGroupApp.BaseRouter
+	gatewayRouter := router.RouterGroupApp.GatwayRouter
 	articleRouter := router.RouterGroupApp.ArticleRouter
 
 	// 方便统一添加路由组前缀 多服务器上线使用
 	PublicGroup := Router.Group("")
 	PublicGroup.Use(middleware.GinLogger())
 	{
-		baseRouter.InitBaseRouter(PublicGroup) // 注册基础功能路由 不做鉴权
+		gatewayRouter.InitGatwayRouter(PublicGroup) // 注册基础功能路由 不做鉴权
 		router.InitWechatRouter(PublicGroup)
 	}
 

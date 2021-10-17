@@ -1,11 +1,11 @@
 package response
 
 import (
-	model "self-discipline/model/userInfo"
+	model "self-discipline/model/user"
 )
 
 type UserResponse struct {
-	User *model.Users `json:"user"`
+	User model.Users `json:"user"`
 }
 
 type LoginResponse struct {

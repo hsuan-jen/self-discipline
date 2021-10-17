@@ -1,7 +1,7 @@
 package router
 
 type RouterGroup struct {
-	BaseRouter
+	GatwayRouter
 	ArticleRouter
 }
 
