@@ -1,17 +1,18 @@
 package utils
 
 import (
+	"fmt"
 	"math/rand"
 	"strings"
 	"time"
 )
 
 //字符串切片合并为单个字符串
-func MergeStr(strs []string) string {
+func MergeStr(strs []interface{}) string {
 	var build strings.Builder
 
 	for _, str := range strs {
-		build.WriteString(str)
+		build.WriteString(fmt.Sprintf("%v", str))
 	}
 
 	return build.String()

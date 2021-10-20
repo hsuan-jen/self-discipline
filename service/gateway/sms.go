@@ -39,7 +39,7 @@ func (s *SmsService) CreateSms(sms user.PhoneSms) (errMsg string, err error) {
 //redis记录1小时手机号短信次数
 func (*SmsService) remarkSms(phone string) (num int, err error) {
 
-	rkey := utils.MergeStr([]string{"self:", phone})
+	rkey := utils.MergeStr([]interface{}{"self:", phone})
 	recode, err := global.REDIS.Get(rkey).Result()
 	if err != nil {
 		if err != redis.Nil {

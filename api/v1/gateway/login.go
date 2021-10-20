@@ -12,7 +12,6 @@ import (
 	"self-discipline/service"
 	"self-discipline/utils"
 	"self-discipline/utils/validator"
-	"strconv"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -69,7 +68,7 @@ func (g *LoginGroup) tokenNext(c *gin.Context, info user.Users) {
 	}
 
 	var jwtService = service.ServiceGroupApp.SystemServiceGroup.JwtService
-	rkey := utils.MergeStr([]string{configs.RedisKeyJWT, strconv.FormatUint(info.ID, 10)})
+	rkey := utils.MergeStr([]interface{}{configs.RedisKeyJWT, info.ID})
 
 	if err := jwtService.SetRedisJWT(token, rkey); err != nil {
 		global.LOG.Error("设置登录状态失败!", zap.Any("err", err))
@@ -96,7 +95,7 @@ func (*LoginGroup) UserSaveRedis(info *user.Users) error {
 	if err != nil {
 		return err
 	}
-	rkey := utils.MergeStr([]string{configs.RedisKeyUserID, strconv.FormatUint(info.ID, 10)})
+	rkey := utils.MergeStr([]interface{}{configs.RedisKeyUserID, info.ID})
 	m["uuid"] = fmt.Sprintf("%v", m["uuid"])
 	err = global.REDIS.HMSet(rkey, m).Err()
 	global.REDIS.Expire(rkey, 86400*time.Second)
