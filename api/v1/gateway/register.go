@@ -33,7 +33,7 @@ func (*RegisterGroup) RegisterByPhone(ctx *gin.Context) {
 
 	//短信验证
 	sms := user.PhoneSms{Phone: req.Phone}
-	smsInfo, err := smsService.FindSmsByPhone(sms)
+	smsInfo, err := smsService.FindSms(sms)
 	if err != nil {
 		global.LOG.Error("验证短信失败", zap.Any("err", err))
 		response.FailWithMessage("验证短信失败", ctx)
@@ -43,16 +43,34 @@ func (*RegisterGroup) RegisterByPhone(ctx *gin.Context) {
 		response.FailWithMessage("短信已使用", ctx)
 		return
 	} else if smsInfo.CreatedAt+300 < int32(time.Now().Unix()) {
-		response.FailWithMessage("短信已过期", ctx)
+		response.FailWithMessage("短信有效期为5分钟", ctx)
+		return
+	}
+	if err := smsService.UpdateSms(smsInfo.ID); err != nil {
+		global.LOG.Error("更新短信失败", zap.Any("err", err))
+		response.FailWithMessage("更新短信失败", ctx)
 		return
 	}
 
-	u := user.Users{Phone: req.Phone, Password: req.Password}
-
-	res, err := registerService.RegisterByPhone(u)
+	sysnickname, err := nicknameService.GetNickname()
+	if err != nil {
+		global.LOG.Error("获取昵称失败", zap.Any("err", err))
+		response.FailWithMessage("获取昵称失败", ctx)
+		return
+	}
+	u := user.Users{
+		Phone:    req.Phone,
+		Password: req.Password,
+		Nickname: sysnickname.Nickname,
+		UserInfo: user.UserInfo{CreatedAt: int32(time.Now().Unix())},
+	}
+	res, errMsg, err := registerService.RegisterByPhone(u)
 	if err != nil {
 		global.LOG.Error("注册失败", zap.Any("err", err))
-		response.FailWithMessage("注册失败", ctx)
+		if errMsg == "" {
+			errMsg = "注册失败"
+		}
+		response.FailWithMessage(errMsg, ctx)
 		return
 	}
 	response.OkWithDetailed(res, "注册成功", ctx)

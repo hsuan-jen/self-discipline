@@ -17,4 +17,5 @@ type Users struct {
 	Status      uint8     `json:"-"`        // 状态 0正常 1封号
 	PayPwd      string    `json:"-"`        // 支付密码
 	MobileModel string    `json:"-"`        // 手机型号
+	UserInfo    UserInfo  `json:"user_info" gorm:"foreignkey:user_id;references:id"`
 }

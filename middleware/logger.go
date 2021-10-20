@@ -3,11 +3,8 @@ package middleware
 import (
 	"bytes"
 	"io/ioutil"
-	"self-discipline/global"
-	"time"
 
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 type bodyLogWriter struct {
@@ -23,9 +20,9 @@ func (w bodyLogWriter) Write(b []byte) (int, error) {
 // GinLogger 接收gin框架默认的日志
 func GinLogger() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		start := time.Now()
+		/* start := time.Now()
 		path := c.Request.URL.Path
-		query := c.Request.URL.RawQuery
+		query := c.Request.URL.RawQuery */
 
 		// 过滤文件请求
 		/* reg := regexp.MustCompile("\\.[^\\s]")
@@ -48,7 +45,7 @@ func GinLogger() gin.HandlerFunc {
 		c.Writer = blw
 		c.Next()
 
-		cost := time.Since(start)
+		/* cost := time.Since(start)
 		global.LOG.Info(path,
 			zap.Int("status", c.Writer.Status()),
 			zap.String("method", c.Request.Method),
@@ -60,6 +57,6 @@ func GinLogger() gin.HandlerFunc {
 			zap.String("errors", c.Errors.ByType(gin.ErrorTypePrivate).String()),
 			zap.String("responseBody", string(blw.body.Bytes())),
 			zap.Duration("cost", cost),
-		)
+		) */
 	}
 }

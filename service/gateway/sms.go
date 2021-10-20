@@ -68,8 +68,15 @@ func (*SmsService) remarkSms(phone string) (num int, err error) {
 }
 
 //查找短信
-func (s *SmsService) FindSmsByPhone(sms user.PhoneSms) (user.PhoneSms, error) {
+func (s *SmsService) FindSms(sms user.PhoneSms) (user.PhoneSms, error) {
 
 	err := global.DB.Last(&sms).Error
 	return sms, err
+}
+
+//更新短信状态
+func (s *SmsService) UpdateSms(id uint64) (err error) {
+
+	err = global.DB.Model(&user.PhoneSms{}).Where("id = ?", id).Update("status", 1).Error
+	return
 }

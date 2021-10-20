@@ -1,11 +1,7 @@
 package wechat
 
 import (
-	"self-discipline/global"
-	userInfoReq "self-discipline/model/userInfo/request"
-
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 // @Tags Base
@@ -17,13 +13,4 @@ import (
 // @Router /checkSign[get]
 func (h *Oauth2Api) CheckSign(c *gin.Context) {
 
-	var req userInfoReq.CheckSignature
-	_ = c.ShouldBind(&req)
-	global.LOG.Info("CheckSign",
-		zap.Any("signature", req.Signature),
-		zap.Any("timestamp", req.Timestamp),
-		zap.Any("nonce", req.Nonce),
-		zap.Any("echostr", req.Echostr),
-	)
-	c.String(200, req.Echostr)
 }
