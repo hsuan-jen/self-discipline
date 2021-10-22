@@ -3,9 +3,9 @@ package gateway
 import "self-discipline/service"
 
 type ApiGroup struct {
-	LoginGroup
-	RegisterGroup
-	SmsGroup
+	LoginApi
+	RegisterApi
+	SmsApi
 }
 
 var loginService = service.ServiceGroupApp.GatewayServiceGroup.LoginService

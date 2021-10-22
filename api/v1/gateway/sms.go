@@ -11,7 +11,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type SmsGroup struct{}
+type SmsApi struct{}
 
 // @Tags Base
 // @Summary 获取短信
@@ -20,7 +20,7 @@ type SmsGroup struct{}
 // @Param data formData request.Sms true "手机号码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"操作成功"}"
 // @Router /v1/phone/sms [post]
-func (SmsGroup) Sms(ctx *gin.Context) {
+func (*SmsApi) Sms(ctx *gin.Context) {
 
 	var req userReq.PhoneSms
 	_ = ctx.ShouldBindJSON(&req)

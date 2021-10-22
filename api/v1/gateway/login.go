@@ -19,7 +19,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type LoginGroup struct{}
+type LoginApi struct{}
 
 // @Tags Base
 // @Summary 手机登录登录
@@ -27,7 +27,7 @@ type LoginGroup struct{}
 // @Param data body userReq.LoginByPhone true "手机号码, 密码, 手机型号"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
 // @Router /v1/phone/login [post]
-func (g *LoginGroup) LoginByPhone(ctx *gin.Context) {
+func (a *LoginApi) LoginByPhone(ctx *gin.Context) {
 	var req userReq.LoginByPhone
 	_ = ctx.ShouldBindJSON(&req)
 
@@ -41,13 +41,13 @@ func (g *LoginGroup) LoginByPhone(ctx *gin.Context) {
 		global.LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Any("err", err))
 		response.FailWithMessage("用户名不存在或者密码错误", ctx)
 	} else {
-		g.tokenNext(ctx, user)
+		a.tokenNext(ctx, user)
 	}
 
 }
 
 // 登录以后签发jwt
-func (g *LoginGroup) tokenNext(c *gin.Context, info user.Users) {
+func (a *LoginApi) tokenNext(c *gin.Context, info user.Users) {
 	j := utils.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
 	claims := request.CustomClaims{
 		UUID:     info.UUID,
@@ -76,7 +76,7 @@ func (g *LoginGroup) tokenNext(c *gin.Context, info user.Users) {
 		return
 	}
 
-	if err = g.UserSaveRedis(&info); err != nil {
+	if err = a.UserSaveRedis(&info); err != nil {
 		global.LOG.Error("记录登录信息失败!", zap.Any("err", err))
 		response.FailWithMessage("记录登录信息失败", c)
 		return
@@ -90,7 +90,7 @@ func (g *LoginGroup) tokenNext(c *gin.Context, info user.Users) {
 
 }
 
-func (*LoginGroup) UserSaveRedis(info *user.Users) error {
+func (*LoginApi) UserSaveRedis(info *user.Users) error {
 	m, err := utils.Struct2Map(info)
 	if err != nil {
 		return err

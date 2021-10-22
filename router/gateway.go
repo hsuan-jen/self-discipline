@@ -11,9 +11,9 @@ type GatwayRouter struct {
 
 func (GatwayRouter) InitGatwayRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 
-	var loginApi = v1.ApiGroupApp.GatewayApiGroup.LoginGroup
-	var registerApi = v1.ApiGroupApp.GatewayApiGroup.RegisterGroup
-	var smsApi = v1.ApiGroupApp.GatewayApiGroup.SmsGroup
+	var loginApi = v1.ApiGroupApp.GatewayApiGroup.LoginApi
+	var registerApi = v1.ApiGroupApp.GatewayApiGroup.RegisterApi
+	var smsApi = v1.ApiGroupApp.GatewayApiGroup.SmsApi
 	gatewayRouter := Router.Group("v1")
 	{
 		gatewayRouter.POST("phone/login", loginApi.LoginByPhone)

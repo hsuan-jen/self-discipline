@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap"
 )
 
-type RegisterGroup struct{}
+type RegisterApi struct{}
 
 // @Tags Base
 // @Summary 用户注册
@@ -21,7 +21,7 @@ type RegisterGroup struct{}
 // @Param data formData request.RegisterByPhone true "手机号码, 密码, 确认密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"注册成功"}"
 // @Router /v1/phone/register [post]
-func (*RegisterGroup) RegisterByPhone(ctx *gin.Context) {
+func (*RegisterApi) RegisterByPhone(ctx *gin.Context) {
 
 	var req userReq.RegisterByPhone
 	_ = ctx.ShouldBindJSON(&req)
