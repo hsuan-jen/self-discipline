@@ -12,7 +12,7 @@ type Articles struct {
 	Like      int32         `json:"like"`
 	Leave     int32         `json:"leave"`
 	Content   string        `json:"content"`
-	User      user.Users    `json:"user"`
+	User      user.User    `json:"user"`
 	GiveMark  ArticleGives  `json:"give_mark" gorm:"foreignKey:ArticleID"`
 	LeaveMark ArticleLeaves `json:"leave_mark" gorm:"foreignKey:ArticleID"`
 }

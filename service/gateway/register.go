@@ -13,7 +13,7 @@ import (
 type RegisterService struct{}
 
 //手机注册
-func (*RegisterService) RegisterByPhone(u user.Users) (info user.Users, errMsg string, err error) {
+func (*RegisterService) RegisterByPhone(u user.User) (info user.User, errMsg string, err error) {
 
 	err = global.DB.Select("phone").Where("phone = ?", u.Phone).First(&info).Error
 	if !errors.Is(err, gorm.ErrRecordNotFound) {

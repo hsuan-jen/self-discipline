@@ -58,7 +58,7 @@ func (*RegisterApi) RegisterByPhone(ctx *gin.Context) {
 		response.FailWithMessage("获取昵称失败", ctx)
 		return
 	}
-	u := user.Users{
+	u := user.User{
 		Phone:    req.Phone,
 		Password: req.Password,
 		Nickname: sysnickname.Nickname,

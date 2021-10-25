@@ -5,11 +5,11 @@ import (
 )
 
 type UserResponse struct {
-	User model.Users `json:"user"`
+	User model.User `json:"user"`
 }
 
 type LoginResponse struct {
-	User      model.Users `json:"user"`
-	Token     string      `json:"token"`
-	ExpiresAt int64       `json:"expiresAt"`
+	User      model.User `json:"user"`
+	Token     string     `json:"token"`
+	ExpiresAt int64      `json:"expiresAt"`
 }

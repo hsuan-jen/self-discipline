@@ -1,7 +1,6 @@
 package gateway
 
 import (
-	"fmt"
 	"self-discipline/configs"
 	"self-discipline/global"
 	"self-discipline/model/common/request"
@@ -36,7 +35,7 @@ func (a *LoginApi) LoginByPhone(ctx *gin.Context) {
 		return
 	}
 
-	data := user.Users{Phone: req.Phone, Password: req.Password, MobileModel: req.MobileModel}
+	data := user.User{Phone: req.Phone, Password: req.Password, MobileModel: req.MobileModel}
 	if user, err := loginService.LoginByPhone(data); err != nil {
 		global.LOG.Error("登陆失败! 用户名不存在或者密码错误!", zap.Any("err", err))
 		response.FailWithMessage("用户名不存在或者密码错误", ctx)
@@ -47,7 +46,7 @@ func (a *LoginApi) LoginByPhone(ctx *gin.Context) {
 }
 
 // 登录以后签发jwt
-func (a *LoginApi) tokenNext(c *gin.Context, info user.Users) {
+func (a *LoginApi) tokenNext(c *gin.Context, info user.User) {
 	j := utils.JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
 	claims := request.CustomClaims{
 		UUID:     info.UUID,
@@ -90,13 +89,13 @@ func (a *LoginApi) tokenNext(c *gin.Context, info user.Users) {
 
 }
 
-func (*LoginApi) UserSaveRedis(info *user.Users) error {
+func (*LoginApi) UserSaveRedis(info *user.User) error {
 	m, err := utils.Struct2Map(info)
 	if err != nil {
 		return err
 	}
 	rkey := utils.MergeStr([]interface{}{configs.RedisKeyUserID, info.ID})
-	m["uuid"] = fmt.Sprintf("%v", m["uuid"])
+
 	err = global.REDIS.HMSet(rkey, m).Err()
 	global.REDIS.Expire(rkey, 86400*time.Second)
 	return err
