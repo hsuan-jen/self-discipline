@@ -10,7 +10,8 @@ import (
 
 type TargetSignService struct{}
 
-func (s *TargetSignService) GetTargetSignList(factor targetReq.TargetSign) (list []target.TargetSign, err error) {
+//打卡数据
+func (s *TargetSignService) GetTargetSignList(factor targetReq.TargetSign) (list []target.TargetSign, total int64, err error) {
 	limit := factor.PageSize
 	offset := factor.PageSize * (factor.Page - 1)
 
@@ -21,9 +22,13 @@ func (s *TargetSignService) GetTargetSignList(factor targetReq.TargetSign) (list
 		db = db.Order("created_at desc")
 	}
 
+	if err = db.Count(&total).Error; err != nil {
+		return
+	}
+
 	err = db.Limit(limit).Offset(offset).
 		Preload("User", func(db *gorm.DB) *gorm.DB {
-			return db.Select("id,phone,nickname,avatar,gender")
+			return db.Select("id,nickname,avatar,gender")
 		}).
 		Find(&list).Error
 

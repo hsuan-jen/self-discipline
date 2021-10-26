@@ -17,7 +17,7 @@ redis:
   addr: 127.0.0.1:6379
   password: ""
 system:
-  mode: release                 # debug, release, test
+  mode: debug                 # debug, release, test
   addr: 8800
   pprof: false
   promhttp: false
