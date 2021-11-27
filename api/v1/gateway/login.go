@@ -22,10 +22,11 @@ type LoginApi struct{}
 
 // @Tags Base
 // @Summary 手机登录登录
-// @Produce  application/json
+// @accept application/json
+// @Produce application/json
 // @Param data body userReq.LoginByPhone true "手机号码, 密码, 手机型号"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"登陆成功"}"
-// @Router /v1/phone/login [post]
+// @Router /phone/login [post]
 func (a *LoginApi) LoginByPhone(ctx *gin.Context) {
 	var req userReq.LoginByPhone
 	_ = ctx.ShouldBindJSON(&req)

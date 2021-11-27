@@ -24,7 +24,169 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/login": {
+        "/phone/login": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Base"
+                ],
+                "summary": "手机登录登录",
+                "parameters": [
+                    {
+                        "description": "手机号码, 密码, 手机型号",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.LoginByPhone"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"登陆成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/phone/register": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Base"
+                ],
+                "summary": "手机用户注册",
+                "parameters": [
+                    {
+                        "description": "手机号码, 密码, 确认密码",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.RegisterByPhone"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"注册成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/phone/sms": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Base"
+                ],
+                "summary": "获取短信",
+                "parameters": [
+                    {
+                        "description": "手机号码",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.PhoneSms"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"操作成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/target/getTargetSignList": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TargetSign"
+                ],
+                "summary": "获取打卡日志",
+                "parameters": [
+                    {
+                        "description": "类型, 页码, 每页大小",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.TargetSign"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/article/give": {
+            "post": {
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Base"
+                ],
+                "summary": "点赞",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "name": "article_id",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"操作成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/article/issue": {
             "post": {
                 "consumes": [
                     "application/x-www-form-urlencoded"
@@ -39,15 +201,9 @@ var doc = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "密码",
-                        "name": "password",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "string",
-                        "description": "手机号码",
-                        "name": "phone",
-                        "in": "formData"
+                        "name": "content",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -60,7 +216,7 @@ var doc = `{
                 }
             }
         },
-        "/v1/register": {
+        "/v1/article/leave": {
             "post": {
                 "consumes": [
                     "application/x-www-form-urlencoded"
@@ -71,28 +227,150 @@ var doc = `{
                 "tags": [
                     "Base"
                 ],
-                "summary": "用户注册",
+                "summary": "留言",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "密码",
-                        "name": "password",
-                        "in": "formData"
+                        "type": "integer",
+                        "name": "article_id",
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "type": "string",
-                        "description": "手机号码",
-                        "name": "phone",
-                        "in": "formData"
+                        "name": "msg",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"success\":true,\"data\":{},\"msg\":\"注册成功\"}",
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"操作成功\"}",
                         "schema": {
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "/v1/article/list": {
+            "post": {
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Base"
+                ],
+                "summary": "用户登录",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "keyword",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页大小",
+                        "name": "pageSize",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"操作成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "request.LoginByPhone": {
+            "type": "object",
+            "required": [
+                "password",
+                "phone"
+            ],
+            "properties": {
+                "mobile_model": {
+                    "description": "手机型号",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "密码",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "手机号码",
+                    "type": "string"
+                }
+            }
+        },
+        "request.PhoneSms": {
+            "type": "object",
+            "required": [
+                "phone"
+            ],
+            "properties": {
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.RegisterByPhone": {
+            "type": "object",
+            "required": [
+                "code",
+                "confirm_pwd",
+                "password",
+                "phone"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "confirm_pwd": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.TargetSign": {
+            "type": "object",
+            "required": [
+                "page",
+                "pageSize",
+                "type"
+            ],
+            "properties": {
+                "page": {
+                    "description": "页码",
+                    "type": "integer"
+                },
+                "pageSize": {
+                    "description": "每页大小",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "0推荐 1最新",
+                    "type": "integer"
                 }
             }
         }

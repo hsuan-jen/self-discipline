@@ -14,11 +14,11 @@ func (GatwayRouter) InitGatwayRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 	var loginApi = v1.ApiGroupApp.GatewayApiGroup.LoginApi
 	var registerApi = v1.ApiGroupApp.GatewayApiGroup.RegisterApi
 	var smsApi = v1.ApiGroupApp.GatewayApiGroup.SmsApi
-	gatewayRouter := Router.Group("v1")
+	gatewayRouter := Router.Group("phone")
 	{
-		gatewayRouter.POST("phone/login", loginApi.LoginByPhone)
-		gatewayRouter.POST("phone/register", registerApi.RegisterByPhone)
-		gatewayRouter.POST("phone/sms", smsApi.Sms)
+		gatewayRouter.POST("login", loginApi.LoginByPhone)
+		gatewayRouter.POST("register", registerApi.RegisterByPhone)
+		gatewayRouter.POST("sms", smsApi.Sms)
 	}
 	return gatewayRouter
 }

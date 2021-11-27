@@ -14,13 +14,10 @@ import (
 type SmsService struct{}
 
 //插入短信
-func (s *SmsService) CreateSms(sms user.PhoneSms) (errMsg string, err error) {
+func (s *SmsService) CreateSms(sms user.PhoneSms) (err error) {
 
-	if num, err := s.remarkSms(sms.Phone); err != nil {
-		if num >= 10 {
-			errMsg = err.Error()
-		}
-		return errMsg, err
+	if _, err = s.remarkSms(sms.Phone); err != nil {
+		return
 	}
 	sms.Code = utils.RandomStr(1, 6)
 
@@ -33,7 +30,7 @@ func (s *SmsService) CreateSms(sms user.PhoneSms) (errMsg string, err error) {
 		httpclient.WithHeader("Authorization", "demoGetAuthorization")
 	) */
 	err = global.DB.Create(&sms).Error
-	return errMsg, err
+	return
 }
 
 //redis记录1小时手机号短信次数

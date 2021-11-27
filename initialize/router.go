@@ -61,7 +61,6 @@ func Routers() *gin.Engine {
 	PublicGroup.Use(middleware.GinLogger())
 	{
 		gatewayRouter.InitGatwayRouter(PublicGroup) // 注册基础功能路由 不做鉴权
-		router.InitWechatRouter(PublicGroup)
 	}
 
 	PrivateGroup := Router.Group("")

@@ -12,7 +12,7 @@ type TargetRouter struct {
 func (r *TargetRouter) InitTargetRouter(Router *gin.RouterGroup) (R gin.IRoutes) {
 
 	var targetApi = v1.ApiGroupApp.TargetApiGroup
-	targetRouter := Router.Group("v1/target")
+	targetRouter := Router.Group("target")
 	{
 		targetRouter.GET("getTargetSignList", targetApi.TargetSignApi.GetTargetSignList)
 

@@ -1,6 +1,7 @@
 package gateway
 
 import (
+	"errors"
 	"self-discipline/global"
 	"self-discipline/model/common/response"
 	"self-discipline/model/user"
@@ -10,17 +11,18 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"gorm.io/gorm"
 )
 
 type RegisterApi struct{}
 
 // @Tags Base
-// @Summary 用户注册
-// @Accept application/x-www-form-urlencoded
-// @Produce  application/json
-// @Param data formData request.RegisterByPhone true "手机号码, 密码, 确认密码"
+// @Summary 手机用户注册
+// @accept application/json
+// @Produce application/json
+// @Param data body userReq.RegisterByPhone true "手机号码, 密码, 确认密码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"注册成功"}"
-// @Router /v1/phone/register [post]
+// @Router /phone/register [post]
 func (*RegisterApi) RegisterByPhone(ctx *gin.Context) {
 
 	var req userReq.RegisterByPhone
@@ -64,13 +66,14 @@ func (*RegisterApi) RegisterByPhone(ctx *gin.Context) {
 		Nickname: sysnickname.Nickname,
 		UserInfo: user.UserInfo{CreatedAt: int32(time.Now().Unix())},
 	}
-	res, errMsg, err := registerService.RegisterByPhone(u)
+	res, err := registerService.RegisterByPhone(u)
 	if err != nil {
-		global.LOG.Error("注册失败", zap.Any("err", err))
-		if errMsg == "" {
-			errMsg = "注册失败"
+		if !errors.Is(err, gorm.ErrRecordNotFound) {
+			// 判断手机号是否注册
+			response.FailWithMessage("手机号已注册", ctx)
+			return
 		}
-		response.FailWithMessage(errMsg, ctx)
+		response.FailWithMessage("注册失败", ctx)
 		return
 	}
 	response.OkWithDetailed(res, "注册成功", ctx)

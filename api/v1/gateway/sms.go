@@ -1,25 +1,24 @@
 package gateway
 
 import (
-	"self-discipline/global"
+	"errors"
 	"self-discipline/model/common/response"
 	"self-discipline/model/user"
 	userReq "self-discipline/model/user/request"
 	"self-discipline/utils/validator"
 
 	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 )
 
 type SmsApi struct{}
 
 // @Tags Base
 // @Summary 获取短信
-// @Accept application/x-www-form-urlencoded
-// @Produce  application/json
-// @Param data formData request.Sms true "手机号码"
+// @accept application/json
+// @Produce application/json
+// @Param data body userReq.PhoneSms true "手机号码"
 // @Success 200 {string} string "{"success":true,"data":{},"msg":"操作成功"}"
-// @Router /v1/phone/sms [post]
+// @Router /phone/sms [post]
 func (*SmsApi) Sms(ctx *gin.Context) {
 
 	var req userReq.PhoneSms
@@ -31,12 +30,12 @@ func (*SmsApi) Sms(ctx *gin.Context) {
 	}
 
 	data := user.PhoneSms{Phone: req.Phone}
-	if errMsg, err := smsService.CreateSms(data); err != nil {
-		global.LOG.Error("获取短信失败", zap.Any("err", err))
-		if errMsg == "" {
-			errMsg = "获取短信失败"
+	if err := smsService.CreateSms(data); err != nil {
+		if errors.Is(err, errors.New("1小时内限制10条短信")) {
+			response.FailWithMessage("1小时内限制10条短信", ctx)
+			return
 		}
-		response.FailWithMessage(errMsg, ctx)
+		response.FailWithMessage("获取短信失败", ctx)
 		return
 	}
 	response.Ok(ctx)

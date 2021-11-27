@@ -1,22 +1,176 @@
 basePath: /
+definitions:
+  request.LoginByPhone:
+    properties:
+      mobile_model:
+        description: 手机型号
+        type: string
+      password:
+        description: 密码
+        type: string
+      phone:
+        description: 手机号码
+        type: string
+    required:
+    - password
+    - phone
+    type: object
+  request.PhoneSms:
+    properties:
+      phone:
+        type: string
+    required:
+    - phone
+    type: object
+  request.RegisterByPhone:
+    properties:
+      code:
+        type: string
+      confirm_pwd:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+    required:
+    - code
+    - confirm_pwd
+    - password
+    - phone
+    type: object
+  request.TargetSign:
+    properties:
+      page:
+        description: 页码
+        type: integer
+      pageSize:
+        description: 每页大小
+        type: integer
+      type:
+        description: 0推荐 1最新
+        type: integer
+    required:
+    - page
+    - pageSize
+    - type
+    type: object
 info:
   contact: {}
   description: This is a sample Server pets
   title: Swagger Example API
   version: 0.0.1
 paths:
-  /v1/login:
+  /phone/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 手机号码, 密码, 手机型号
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.LoginByPhone'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"登陆成功"}'
+          schema:
+            type: string
+      summary: 手机登录登录
+      tags:
+      - Base
+  /phone/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 手机号码, 密码, 确认密码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.RegisterByPhone'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          schema:
+            type: string
+      summary: 手机用户注册
+      tags:
+      - Base
+  /phone/sms:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 手机号码
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.PhoneSms'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"操作成功"}'
+          schema:
+            type: string
+      summary: 获取短信
+      tags:
+      - Base
+  /target/getTargetSignList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 类型, 页码, 每页大小
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/request.TargetSign'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      summary: 获取打卡日志
+      tags:
+      - TargetSign
+  /v1/article/give:
     post:
       consumes:
       - application/x-www-form-urlencoded
       parameters:
-      - description: 密码
-        in: formData
-        name: password
-        type: string
-      - description: 手机号码
-        in: formData
-        name: phone
+      - in: formData
+        name: article_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"操作成功"}'
+          schema:
+            type: string
+      summary: 点赞
+      tags:
+      - Base
+  /v1/article/issue:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - in: formData
+        name: content
+        required: true
         type: string
       produces:
       - application/json
@@ -28,27 +182,55 @@ paths:
       summary: 用户登录
       tags:
       - Base
-  /v1/register:
+  /v1/article/leave:
     post:
       consumes:
       - application/x-www-form-urlencoded
       parameters:
-      - description: 密码
-        in: formData
-        name: password
-        type: string
-      - description: 手机号码
-        in: formData
-        name: phone
+      - in: formData
+        name: article_id
+        required: true
+        type: integer
+      - in: formData
+        name: msg
+        required: true
         type: string
       produces:
       - application/json
       responses:
         "200":
-          description: '{"success":true,"data":{},"msg":"注册成功"}'
+          description: '{"success":true,"data":{},"msg":"操作成功"}'
           schema:
             type: string
-      summary: 用户注册
+      summary: 留言
+      tags:
+      - Base
+  /v1/article/list:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      parameters:
+      - in: formData
+        name: keyword
+        type: string
+      - description: 页码
+        in: formData
+        name: page
+        required: true
+        type: integer
+      - description: 每页大小
+        in: formData
+        name: pageSize
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"操作成功"}'
+          schema:
+            type: string
+      summary: 用户登录
       tags:
       - Base
 securityDefinitions:
