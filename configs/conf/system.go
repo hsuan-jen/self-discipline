@@ -8,4 +8,5 @@ type System struct {
 	Rate          bool   `mapstructure:"rate" json:"rate" yaml:"rate"`                              // 限流开关
 	MaxBurstSize  int    `mapstructure:"max-burstSize" json:"maxBurstSize" yaml:"max-burstSize"`    // 限流最大数
 	UseMultipoint bool   `mapstructure:"use-multipoint" json:"useMultipoint" yaml:"use-multipoint"` // 多点登录拦截
+	OssType       string `mapstructure:"oss-type" json:"ossType" yaml:"oss-type"`                   // Oss类型
 }

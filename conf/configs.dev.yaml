@@ -23,6 +23,7 @@ system:
   promhttp: false
   rate: true
   max-burstSize: 100000
+  oss-type: 'qiniu'    # 控制oss选择走本期还是 七牛等其他仓 自行增加其他oss仓可以在 server/utils/upload/upload.go 中 NewOss函数配置
 zap:
   level: info
   format: console
@@ -33,3 +34,11 @@ zap:
   encode-level: LowercaseColorLevelEncoder
   stacktrace-key: stacktrace
   log-in-console: true
+qiniu:
+  zone: 'ZoneHuanan'
+  bucket: 'fiery'
+  img-path: 'cdn.fiery.work'
+  use-https: false
+  access-key: 'eK7YBltAOu1Px-Uk9rQtrSKevRD_t7hfiX_UI5px'
+  secret-key: 'NkFhRSrrs9dLQR2Y07Mi8tLkIOGaIgmqAUqm5TT3'
+  use-cdn-domains: false

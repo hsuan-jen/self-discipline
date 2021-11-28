@@ -10,4 +10,7 @@ type Server struct {
 	Redis  conf.Redis  `mapstructure:"redis" json:"redis" yaml:"redis"`
 	Mysql  conf.Mysql  `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
 	System conf.System `mapstructure:"system" json:"system" yaml:"system"`
+	// oss
+	Local conf.Local `mapstructure:"local" json:"local" yaml:"local"`
+	Qiniu conf.Qiniu `mapstructure:"qiniu" json:"qiniu" yaml:"qiniu"`
 }
