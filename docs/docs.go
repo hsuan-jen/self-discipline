@@ -123,8 +123,51 @@ var doc = `{
                 }
             }
         },
+        "/target/createTargetSign": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "TargetSign"
+                ],
+                "summary": "发布打卡日志",
+                "parameters": [
+                    {
+                        "description": "类型, 页码, 每页大小",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/target.TargetSignSimple"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"success\":true,\"data\":{},\"msg\":\"获取成功\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/target/getTargetSignList": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -137,13 +180,25 @@ var doc = `{
                 "summary": "获取打卡日志",
                 "parameters": [
                     {
-                        "description": "类型, 页码, 每页大小",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/request.TargetSign"
-                        }
+                        "type": "integer",
+                        "description": "页码",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "每页大小",
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "0推荐 1最新",
+                        "name": "type",
+                        "in": "query",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -352,25 +407,47 @@ var doc = `{
                 }
             }
         },
-        "request.TargetSign": {
+        "target.TargetSignSimple": {
             "type": "object",
-            "required": [
-                "page",
-                "pageSize",
-                "type"
-            ],
             "properties": {
-                "page": {
-                    "description": "页码",
+                "content": {
+                    "description": "内容",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "创建时间",
                     "type": "integer"
                 },
-                "pageSize": {
-                    "description": "每页大小",
+                "day": {
+                    "description": "打卡天数",
                     "type": "integer"
                 },
-                "type": {
-                    "description": "0推荐 1最新",
+                "id": {
+                    "description": "主键ID",
                     "type": "integer"
+                },
+                "images": {
+                    "description": "图片集，最多9张",
+                    "type": "string"
+                },
+                "like": {
+                    "description": "点赞",
+                    "type": "integer"
+                },
+                "msg": {
+                    "description": "留言",
+                    "type": "string"
+                },
+                "target_id": {
+                    "description": "目标id",
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "video": {
+                    "description": "视频，单个",
+                    "type": "string"
                 }
             }
         }

@@ -25,7 +25,13 @@ func Verify(c *gin.Context, params interface{}) (bool, string) {
 	validate := validator.New()
 
 	switch curLocales {
+	case "en":
+		trans, _ = uni.GetTranslator(curLocales) // 获取对应语言的转换器
+		_ = en_trans.RegisterDefaultTranslations(validate, trans)
+
 	case "zh":
+		fallthrough
+	default:
 		trans, _ = uni.GetTranslator(curLocales) // 获取对应语言的转换器
 		// 内置tag注册 中文翻译器
 		_ = zh_trans.RegisterDefaultTranslations(validate, trans)
@@ -36,15 +42,8 @@ func Verify(c *gin.Context, params interface{}) (bool, string) {
 			if name == "-" {
 				return ""
 			}
-
 			return name
 		})
-	case "en":
-		trans, _ = uni.GetTranslator(curLocales) // 获取对应语言的转换器
-		_ = en_trans.RegisterDefaultTranslations(validate, trans)
-	default:
-		trans, _ = uni.GetTranslator("en") // 获取对应语言的转换器
-		_ = en_trans.RegisterDefaultTranslations(validate, trans)
 	}
 
 	err := validate.Struct(params)

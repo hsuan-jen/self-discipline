@@ -19,3 +19,19 @@ type TargetSign struct {
 	Sort     uint32           `json:"-"`         //排序 顺序 N人举报后未审核即可降权
 	User     user.UserSurface `json:"user" `     //用户信息
 }
+
+type TargetSignSimple struct {
+	global.MODEL
+	UserID   uint64 `json:"user_id"`                                    //
+	TargetID uint64 `json:"target_id" validate:"required" label:"目标id"` //目标id
+	Day      uint32 `json:"day"`                                        //打卡天数
+	Content  string `json:"content" validate:"required" label:"内容"`     //内容
+	Like     uint32 `json:"like"`                                       //点赞
+	Msg      string `json:"msg"`                                        //留言
+	Images   string `json:"images"`                                     //图片集，最多9张
+	Video    string `json:"video"`                                      //视频，单个
+}
+
+func (TargetSignSimple) TableName() string {
+	return "target_sign"
+}

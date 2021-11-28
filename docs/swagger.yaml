@@ -38,21 +38,37 @@ definitions:
     - password
     - phone
     type: object
-  request.TargetSign:
+  target.TargetSignSimple:
     properties:
-      page:
-        description: 页码
+      content:
+        description: 内容
+        type: string
+      created_at:
+        description: 创建时间
         type: integer
-      pageSize:
-        description: 每页大小
+      day:
+        description: 打卡天数
         type: integer
-      type:
-        description: 0推荐 1最新
+      id:
+        description: 主键ID
         type: integer
-    required:
-    - page
-    - pageSize
-    - type
+      images:
+        description: 图片集，最多9张
+        type: string
+      like:
+        description: 点赞
+        type: integer
+      msg:
+        description: 留言
+        type: string
+      target_id:
+        description: 目标id
+        type: integer
+      user_id:
+        type: integer
+      video:
+        description: 视频，单个
+        type: string
     type: object
 info:
   contact: {}
@@ -123,8 +139,8 @@ paths:
       summary: 获取短信
       tags:
       - Base
-  /target/getTargetSignList:
-    get:
+  /target/createTargetSign:
+    post:
       consumes:
       - application/json
       parameters:
@@ -133,7 +149,7 @@ paths:
         name: data
         required: true
         schema:
-          $ref: '#/definitions/request.TargetSign'
+          $ref: '#/definitions/target.TargetSignSimple'
       produces:
       - application/json
       responses:
@@ -141,6 +157,40 @@ paths:
           description: '{"success":true,"data":{},"msg":"获取成功"}'
           schema:
             type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 发布打卡日志
+      tags:
+      - TargetSign
+  /target/getTargetSignList:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 页码
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: 每页大小
+        in: query
+        name: pageSize
+        required: true
+        type: integer
+      - description: 0推荐 1最新
+        in: query
+        name: type
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"获取成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
       summary: 获取打卡日志
       tags:
       - TargetSign

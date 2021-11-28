@@ -14,7 +14,8 @@ func (r *TargetRouter) InitTargetRouter(Router *gin.RouterGroup) (R gin.IRoutes)
 	var targetApi = v1.ApiGroupApp.TargetApiGroup
 	targetRouter := Router.Group("target")
 	{
-		targetRouter.GET("getTargetSignList", targetApi.TargetSignApi.GetTargetSignList)
+		targetRouter.GET("getTargetSignList", targetApi.TargetSignApi.GetTargetSignList) //列表
+		targetRouter.POST("createTargetSign", targetApi.TargetSignApi.CreateTargetSign) //发布
 
 	}
 	return targetRouter
