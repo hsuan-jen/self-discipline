@@ -55,6 +55,7 @@ func Routers() *gin.Engine {
 	gatewayRouter := router.RouterGroupApp.GatwayRouter
 	articleRouter := router.RouterGroupApp.ArticleRouter
 	targetRouter := router.RouterGroupApp.TargetRouter
+	systemRouter := router.RouterGroupApp.SystemRouter
 
 	// 方便统一添加路由组前缀 多服务器上线使用
 	PublicGroup := Router.Group("")
@@ -68,6 +69,7 @@ func Routers() *gin.Engine {
 	{
 		articleRouter.InitArticleRouter(PrivateGroup) // 用户动态
 		targetRouter.InitTargetRouter(PrivateGroup)   //目标
+		systemRouter.InitSystemRouter(PrivateGroup)   // 系统
 
 	}
 	global.LOG.Info("router register success")

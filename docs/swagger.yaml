@@ -69,6 +69,9 @@ definitions:
       video:
         description: 视频，单个
         type: string
+    required:
+    - content
+    - target_id
     type: object
 info:
   contact: {}
@@ -76,6 +79,28 @@ info:
   title: Swagger Example API
   version: 0.0.1
 paths:
+  /file/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      parameters:
+      - description: 上传文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"success":true,"data":{},"msg":"上传成功"}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 上传文件
+      tags:
+      - File
   /phone/login:
     post:
       consumes:
